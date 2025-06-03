@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Submission Form</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .form-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 700px;
+            overflow: hidden;
+        }
+        
+        .form-header {
+            background-color: #302b63; /* Purple-blue */
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 24px;
+            margin: 0;
+            font-weight: 600;
+        }
+        
+        .form-body {
+            padding: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #302b63;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            background-color: #302b63;
+            color: white;
+            border: none;
+            padding: 14px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: #24243e;
+        }
+        
+        .upload-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .file-input {
+            padding: 10px;
+            border: 1px dashed #ddd;
+            border-radius: 4px;
+        }
+        
+        @media (max-width: 600px) {
+            .upload-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-header">
+            <h1>Product Submission</h1>
+        </div>
+        
+        <div class="form-body">
+            <!-- Change action to your WordPress page with the shortcode -->
+            <form action="https://embdesign.shop/submit-product/" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="product_title">Product Title</label>
+                    <input type="text" id="product_title" name="product_title" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="product_desc">Description</label>
+                    <textarea id="product_desc" name="product_desc" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="design_code">Design Code</label>
+                    <input type="text" id="design_code" name="design_code">
+                </div>
+                
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="number" id="price" name="price" min="0" step="0.01" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Gallery Image</label>
+                    <div class="file-input">
+                        <input type="file" name="gallery" accept="image/*">
+                    </div>
+                </div>
+                
+                <div class="upload-grid">
+                    <div class="form-group">
+                        <label>Emb e4 File</label>
+                        <div class="file-input">
+                            <input type="file" name="emb_e4" accept=".emb">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Emb W6 File</label>
+                        <div class="file-input">
+                            <input type="file" name="emb_w6" accept=".emb">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>DST File</label>
+                        <div class="file-input">
+                            <input type="file" name="dst" accept=".dst">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>ZIP File</label>
+                        <div class="file-input">
+                            <input type="file" name="all_zip" accept=".zip">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Other Files</label>
+                    <div class="file-input">
+                        <input type="file" name="other">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" name="category">
+                        <!-- Categories will be loaded dynamically from WordPress -->
+                        <option value="">Select a category</option>
+                    </select>
+                </div>
+                
+                <button type="submit" name="wcsu_submit" class="submit-btn">Submit Product</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Optional: AJAX to load categories from WordPress -->
+    <script>
+    // This would need to be implemented with proper WordPress REST API endpoints
+    // fetch('https://yourwebsite.com/wp-json/wcsu/v1/categories')
+    //   .then(response => response.json())
+    //   .then(categories => {
+    //     const select = document.getElementById('category');
+    //     categories.forEach(cat => {
+    //       const option = document.createElement('option');
+    //       option.value = cat.id;
+    //       option.textContent = cat.name;
+    //       select.appendChild(option);
+    //     });
+    //   });
+    </script>
+</body>
+</html>

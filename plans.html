@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Plan & Pricing - EmbDesign</title>
+  <style>
+    :root {
+      --green: #00ff88;
+      --lime: #c6ff00;
+      --dark-bg: #010a05;
+      --glass: rgba(0, 255, 136, 0.07);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(ellipse at top, #001a0a, #000);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--green);
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      font-size: 2.6rem;
+      font-weight: 900;
+      padding: 30px 10px;
+      background: linear-gradient(90deg, var(--green), var(--lime));
+      color: #000;
+      border-radius: 14px;
+      box-shadow: 0 0 35px var(--lime);
+    }
+
+    main {
+      max-width: 960px;
+      margin: 40px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .plan-card {
+      background: var(--glass);
+      border: 1.8px solid var(--green);
+      border-radius: 16px;
+      padding: 22px 25px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 18px rgba(0, 255, 136, 0.3);
+      transition: all 0.4s ease;
+      cursor: pointer;
+    }
+
+    .plan-card:hover {
+      transform: scale(1.018);
+      box-shadow: 0 0 30px var(--lime);
+    }
+
+    .plan-title {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--lime);
+    }
+
+    .plan-desc {
+      margin-top: 14px;
+      font-size: 1.1rem;
+      color: #ccffe6;
+      line-height: 1.7;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.6s ease;
+    }
+
+    .plan-card.active .plan-desc {
+      max-height: 1200px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 28px 0;
+      color: #aaffcc;
+      font-size: 0.92rem;
+    }
+
+    @media (hover: hover) {
+      .plan-card:hover .plan-desc {
+        max-height: 1200px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>Pricing Plans & Membership - EmbDesign</header>
+
+  <main>
+
+    <div class="plan-card">
+      <div class="plan-title">Free Plan</div>
+      <div class="plan-desc">
+        EmbDesign offers a Free Plan for new users who want to explore our collection before making any commitment. This plan allows you to download a limited number of free embroidery designs available in the Free Designs section. No payment or sign-up required for downloading free designs. This plan is perfect for hobbyists and beginners looking to test our quality and variety.
+      </div>
+    </div>
+
+    <div class="plan-card">
+      <div class="plan-title">Standard Plan</div>
+      <div class="plan-desc">
+        The Standard Plan is our most popular choice for casual users and small businesses. For a monthly subscription fee, you gain unlimited access to over 10,000 premium embroidery designs in multiple file formats including DST, PES, JEF, EXP, and more. You can download and use these designs for personal or commercial projects with full licensing rights. Subscribers also get priority customer support and regular new design updates.
+      </div>
+    </div>
+
+    <div class="plan-card">
+      <div class="plan-title">Premium Plan</div>
+      <div class="plan-desc">
+        Our Premium Plan is designed for professional embroidery businesses and large-scale users. It includes everything in the Standard Plan plus access to exclusive high-end designs, priority request handling, and dedicated account management. Premium subscribers also receive discounts on custom design orders and early beta access to upcoming features and design packs.
+      </div>
+    </div>
+
+    <div class="plan-card">
+      <div class="plan-title">Custom Plan</div>
+      <div class="plan-desc">
+        If none of the standard plans meet your requirements, EmbDesign offers Custom Plans tailored specifically to your business size, usage needs, and budget. Contact our sales team to discuss a personalized plan including bulk download options, extended licenses, integration support, and on-demand custom design services.
+      </div>
+    </div>
+
+  </main>
+
+  <footer>© 2025 EmbDesign. All rights reserved.</footer>
+
+  <script>
+    const plans = document.querySelectorAll('.plan-card');
+    plans.forEach(plan => {
+      plan.addEventListener('click', () => {
+        plans.forEach(p => p !== plan && p.classList.remove('active'));
+        plan.classList.toggle('active');
+      });
+    });
+  </script>
+
+</body>
+</html>

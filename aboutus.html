@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Us - EmbDesign</title>
+  <style>
+    :root {
+      --green: #00ff88;
+      --lime: #c6ff00;
+      --dark-bg: #010a05;
+      --glass: rgba(0, 255, 136, 0.07);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(ellipse at top, #001a0a, #000);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--green);
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      font-size: 2.6rem;
+      font-weight: 900;
+      padding: 30px 10px;
+      background: linear-gradient(90deg, var(--green), var(--lime));
+      color: #000;
+      border-radius: 14px;
+      box-shadow: 0 0 35px var(--lime);
+    }
+
+    main {
+      max-width: 960px;
+      margin: 40px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .section-card {
+      background: var(--glass);
+      border: 1.8px solid var(--green);
+      border-radius: 16px;
+      padding: 22px 25px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 18px rgba(0, 255, 136, 0.3);
+      transition: all 0.4s ease;
+      cursor: pointer;
+    }
+
+    .section-card:hover {
+      transform: scale(1.018);
+      box-shadow: 0 0 30px var(--lime);
+    }
+
+    .section-title {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--lime);
+    }
+
+    .section-content {
+      margin-top: 14px;
+      font-size: 1.1rem;
+      color: #ccffe6;
+      line-height: 1.7;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.6s ease;
+      white-space: pre-line;
+    }
+
+    .section-card.active .section-content {
+      max-height: 4000px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 28px 0;
+      color: #aaffcc;
+      font-size: 0.92rem;
+    }
+
+    @media (hover: hover) {
+      .section-card:hover .section-content {
+        max-height: 4000px;
+      }
+    }
+
+    a {
+      color: var(--lime);
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <header>About Us - EmbDesign</header>
+
+  <main>
+
+    <div class="section-card">
+      <div class="section-title">Our Mission</div>
+      <div class="section-content">
+EmbDesign is dedicated to providing high-quality, innovative embroidery designs that empower creators around the world. Our mission is to inspire creativity by delivering unique, easy-to-use digital embroidery files suitable for all skill levels.
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">Who We Are</div>
+      <div class="section-content">
+We are a passionate team of designers, tech enthusiasts, and craft lovers committed to bridging the gap between traditional embroidery art and modern digital innovation. Our diverse backgrounds help us deliver designs that are not only beautiful but also functional and user-friendly.
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">What We Offer</div>
+      <div class="section-content">
+At EmbDesign, you will find a vast collection of embroidery files compatible with most machines and software. From beginner-friendly patterns to advanced artistic creations, our offerings cater to hobbyists, small businesses, and professional designers alike.
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">Customer Support</div>
+      <div class="section-content">
+We prioritize customer satisfaction and provide comprehensive support through our helpdesk and FAQs. If you ever have questions or require assistance, our friendly support team is here to help you every step of the way.
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">Contact Us</div>
+      <div class="section-content">
+Feel free to reach out anytime at <a href="mailto:support@embdesign.shop">support@embdesign.shop</a>. We love hearing from our community and appreciate your feedback and suggestions.
+      </div>
+    </div>
+
+  </main>
+
+  <footer>© 2025 EmbDesign. All rights reserved.</footer>
+
+  <script>
+    const sections = document.querySelectorAll('.section-card');
+    sections.forEach(section => {
+      section.addEventListener('click', () => {
+        sections.forEach(s => s !== section && s.classList.remove('active'));
+        section.classList.toggle('active');
+      });
+    });
+  </script>
+
+</body>
+</html>

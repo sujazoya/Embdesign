@@ -1,0 +1,54 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "frontend-admin/datetime-field",
+  "title": "Datetime Field",
+  "description": "Displays a datetime field.",
+  "category": "frontend-admin",
+  "textdomain": "frontend-admin",
+  "icon": "list-view",
+  "supports": {
+    "align": [
+      "wide"
+    ]
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "default": ""
+    },
+    "label": {
+      "type": "string",
+      "default": "Text Field"
+    },
+    "hide_label": {
+      "type": "boolean",
+      "default": ""
+    },
+    "required": {
+      "type": "boolean",
+      "default": ""
+    },
+    "default_value": {
+      "type": "string",
+      "default": ""
+    },
+    "placeholder": {
+      "type": "string",
+      "default": ""
+    },
+    "instructions": {
+      "type": "string",
+      "default": ""
+    },
+    "prepend": {
+      "type": "string",
+      "default": ""
+    },
+    "append": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "editorScript": "file:../../datetime/index.js"
+}

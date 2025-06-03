@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FAQ - EmbDesign</title>
+  <style>
+    :root {
+      --green: #00ff88;
+      --lime: #c6ff00;
+      --dark-bg: #050a07;
+      --glass-bg: rgba(255, 255, 255, 0.05);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: radial-gradient(circle, #001100, #000000);
+      color: var(--green);
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      padding: 20px 0;
+      background: linear-gradient(90deg, var(--green), var(--lime));
+      color: #000;
+      border-radius: 12px;
+      box-shadow: 0 0 30px var(--lime);
+    }
+
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .faq-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--green);
+      border-radius: 15px;
+      padding: 20px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+      transition: all 0.4s ease;
+    }
+
+    .faq-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 25px var(--lime);
+      cursor: pointer;
+    }
+
+    .faq-question {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--lime);
+      margin-bottom: 10px;
+    }
+
+    .faq-answer {
+      color: #ccffe6;
+      font-size: 1rem;
+      line-height: 1.6;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+
+    .faq-card.active .faq-answer {
+      max-height: 1000px;
+      margin-top: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #6aff9c;
+      margin-top: 40px;
+    }
+
+    @media (hover: hover) {
+      .faq-card:hover .faq-answer {
+        max-height: 1000px;
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>Frequently Asked Questions • EmbDesign</header>
+
+  <main>
+
+    <div class="faq-card">
+      <div class="faq-question">Q1. Can I get a free embroidery design sample?</div>
+      <div class="faq-answer">
+        Yes! We offer free embroidery design samples for users to test the quality before purchasing. Just visit our "Free Designs" section.
+      </div>
+    </div>
+
+    <div class="faq-card">
+      <div class="faq-question">Q2. What file formats do you provide?</div>
+      <div class="faq-answer">
+        We provide all major machine embroidery formats like EMB, DST, PES, JEF, EXP, XXX, HUS, VP3, and more. Choose your preferred format at checkout.
+      </div>
+    </div>
+
+    <div class="faq-card">
+      <div class="faq-question">Q3. What if my download fails or file is missing?</div>
+      <div class="faq-answer">
+        Don’t worry! If the download fails or your file is missing, simply contact our support with your order ID and we'll resend the files immediately.
+      </div>
+    </div>
+
+    <div class="faq-card">
+      <div class="faq-question">Q4. How long are designs available after purchase?</div>
+      <div class="faq-answer">
+        All purchased designs are available in your account for lifetime download. You can log in anytime and access them from your order history.
+      </div>
+    </div>
+
+    <div class="faq-card">
+      <div class="faq-question">Q5. Can I use these designs for commercial use?</div>
+      <div class="faq-answer">
+        Yes, all designs are licensed for both personal and commercial use. However, redistribution or resale of files is strictly prohibited.
+      </div>
+    </div>
+
+    <div class="faq-card">
+      <div class="faq-question">Q6. I don’t see the format I need, what should I do?</div>
+      <div class="faq-answer">
+        If a specific format is not available, contact us with your requirement. We can convert the design to your desired format and send it to you.
+      </div>
+    </div>
+
+  </main>
+
+  <footer>© 2025 EmbDesign. All rights reserved.</footer>
+
+  <script>
+    const faqs = document.querySelectorAll('.faq-card');
+    faqs.forEach(faq => {
+      faq.addEventListener('click', () => {
+        faqs.forEach(f => f !== faq && f.classList.remove('active'));
+        faq.classList.toggle('active');
+      });
+    });
+  </script>
+
+</body>
+</html>

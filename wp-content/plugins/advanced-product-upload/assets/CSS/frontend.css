@@ -1,0 +1,191 @@
+/* Main form container */
+.apu-form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form sections */
+.apu-form-section {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.apu-form-section h3 {
+    margin-top: 0;
+    color: #333;
+    font-size: 1.25rem;
+}
+
+/* Form groups */
+.apu-form-group {
+    margin-bottom: 1.25rem;
+}
+
+.apu-form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #444;
+}
+
+.apu-form-group input[type="text"],
+.apu-form-group input[type="number"],
+.apu-form-group input[type="email"],
+.apu-form-group input[type="url"],
+.apu-form-group textarea,
+.apu-form-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.apu-form-group input:focus,
+.apu-form-group textarea:focus,
+.apu-form-group select:focus {
+    border-color: #007cba;
+    outline: none;
+}
+
+/* Dropzone styles */
+.apu-dropzone {
+    border: 2px dashed #ccc;
+    border-radius: 5px;
+    padding: 2rem;
+    text-align: center;
+    background: #f9f9f9;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-bottom: 1rem;
+}
+
+.apu-dropzone:hover {
+    border-color: #999;
+    background: #f0f0f0;
+}
+
+.apu-dropzone .dz-message {
+    color: #666;
+}
+
+.apu-dropzone .dz-message small {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: #999;
+}
+
+/* Upload preview */
+.apu-upload-preview {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.apu-preview-item {
+    position: relative;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    padding: 0.5rem;
+    background: #fff;
+}
+
+.apu-preview-item img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.apu-preview-item .apu-file-name {
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    word-break: break-all;
+}
+
+.apu-preview-item .apu-remove-file {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+/* Tags grid */
+.apu-tags-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.apu-tag-item {
+    display: flex;
+    align-items: center;
+}
+
+.apu-tag-item input[type="checkbox"] {
+    margin-right: 0.5rem;
+}
+
+/* Submit button */
+.apu-submit-button {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.apu-submit-button:hover {
+    background: #3e8e41;
+}
+
+/* Status messages */
+.apu-status-message {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    border-radius: 4px;
+}
+
+.apu-status-message.success {
+    background: #d4edda;
+    color: #155724;
+}
+
+.apu-status-message.error {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .apu-form-container {
+        padding: 1rem;
+    }
+    
+    .apu-upload-preview {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+    
+    .apu-tags-container {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+}

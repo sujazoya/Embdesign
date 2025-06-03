@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Multi-Step Login/Signup</title>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+
+  <style>
+    /* Background & blur overlay */
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('https://embdesign.shop/wp-content/uploads/2025/05/3139256-scaled.jpg') no-repeat center center fixed;
+      background-size: cover;
+      overflow: hidden;
+    }
+    .overlay {
+      position: fixed;
+      inset: 0;
+      backdrop-filter: blur(7px);
+      background-color: rgba(15, 30, 70, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Popup container */
+    .popup {
+      background: rgba(15, 30, 70, 0.85);
+      border-radius: 12px;
+      padding: 30px 40px;
+      width: 360px;
+      color: #cce6ff;
+      box-shadow: 0 0 30px rgba(0,0,80,0.8);
+      position: relative;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 24px;
+      font-weight: 600;
+      font-size: 1.8rem;
+      color: #a9d1ff;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px 0;
+      margin: 12px 0;
+      border: none;
+      border-radius: 6px;
+      font-size: 1.15rem;
+      cursor: pointer;
+      background: linear-gradient(135deg, #3a6ed8, #5a8ff7);
+      color: white;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: linear-gradient(135deg, #5a8ff7, #3a6ed8);
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] {
+      width: 100%;
+      padding: 14px;
+      margin: 12px 0;
+      border-radius: 6px;
+      border: 1.5px solid #3a6ed8;
+      background: rgba(255,255,255,0.1);
+      color: #d9e8ff;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+    input::placeholder {
+      color: #aacbff;
+    }
+    input:focus {
+      border-color: #7bb2ff;
+      background: rgba(255,255,255,0.15);
+    }
+
+    .small-button {
+      font-size: 0.9rem;
+      padding: 8px 0;
+      margin-top: 6px;
+      background: transparent;
+      color: #a9d1ff;
+      border: none;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .small-button:hover {
+      color: #e1f0ff;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Back button */
+    .back-btn {
+      position: absolute;
+      top: -25px;
+      left: 1px;
+      background: transparent;
+      border: none;
+      font-size: 1.3rem;
+      color: #a9d1ff;
+      cursor: pointer;
+      user-select: none;
+    }
+    .back-btn:hover {
+      color: #e1f0ff;
+    }
+
+    /* Google button */
+    .google-btn {
+      background: #db4437 !important;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="overlay">
+    <!-- Step 1: Welcome -->
+    <div id="step1" class="popup">
+      <h2>Welcome</h2>
+      <button id="btnSignUp">Sign Up</button>
+      <button id="btnSignIn">Sign In</button>
+    </div>
+
+    <!-- Step 2: Choose Method -->
+    <div id="step2" class="popup hidden">
+      <button class="back-btn" id="backToStep1">&#8592;</button>
+      <h2>Choose A Method To Login</h2>
+      <button id="btnGmailMethod">Login With Gmail</button>
+      <button id="btnNamePassMethod">Login With Name And Password</button>
+    </div>
+
+    <!-- Step 3: Login with Gmail -->
+    <div id="step3" class="popup hidden">
+      <button class="back-btn" id="backToStep2fromGmail">&#8592;</button>
+      <h2>Login With Gmail</h2>
+      <button id="btnLoginGoogle" class="google-btn">Login With Google</button>
+      <button id="btnShowEmailPassForm" class="small-button">Login With Email/Password</button>
+
+      <!-- Email/password form inside Gmail -->
+      <form id="gmailEmailPassForm" class="hidden" onsubmit="return false;">
+        <input type="email" id="gmailEmail" placeholder="Email" required />
+        <input type="password" id="gmailPassword" placeholder="Password" required />
+        <button id="gmailEmailPassLoginBtn">Login</button>
+      </form>
+    </div>
+
+    <!-- Step 4: Login with Name and Password -->
+    <div id="step4" class="popup hidden">
+      <button class="back-btn" id="backToStep2fromNamePass">&#8592;</button>
+      <h2>Login With Name And Password</h2>
+      <form id="namePassForm" onsubmit="return false;">
+        <input type="text" id="username" placeholder="Username" required />
+        <input type="password" id="namePassPassword" placeholder="Password" required />
+        <button id="namePassLoginBtn">Login</button>
+      </form>
+    </div>
+
+  </div>
+
+  <script>
+    // Firebase config here
+    const firebaseConfig = {
+      apiKey: "AIzaSyARMbO4zwKGP-vXCHmzWn0koyTkvVHR4yQ",
+      authDomain: "myloginapp-s.firebaseapp.com",
+      projectId: "myloginapp-s",
+      storageBucket: "myloginapp-s.firebasestorage.app",
+      messagingSenderId: "389616294948",
+      appId: "1:389616294948:web:2ad4e391f630680c160cb1"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    // Step elements
+    const step1 = document.getElementById('step1');
+    const step2 = document.getElementById('step2');
+    const step3 = document.getElementById('step3');
+    const step4 = document.getElementById('step4');
+
+    // Buttons
+    const btnSignUp = document.getElementById('btnSignUp');
+    const btnSignIn = document.getElementById('btnSignIn');
+    const backToStep1 = document.getElementById('backToStep1');
+
+    const btnGmailMethod = document.getElementById('btnGmailMethod');
+    const btnNamePassMethod = document.getElementById('btnNamePassMethod');
+
+    const backToStep2fromGmail = document.getElementById('backToStep2fromGmail');
+    const backToStep2fromNamePass = document.getElementById('backToStep2fromNamePass');
+
+    const btnLoginGoogle = document.getElementById('btnLoginGoogle');
+    const btnShowEmailPassForm = document.getElementById('btnShowEmailPassForm');
+    const gmailEmailPassForm = document.getElementById('gmailEmailPassForm');
+    const gmailEmail = document.getElementById('gmailEmail');
+    const gmailPassword = document.getElementById('gmailPassword');
+    const gmailEmailPassLoginBtn = document.getElementById('gmailEmailPassLoginBtn');
+
+    const namePassForm = document.getElementById('namePassForm');
+    const username = document.getElementById('username');
+    const namePassPassword = document.getElementById('namePassPassword');
+    const namePassLoginBtn = document.getElementById('namePassLoginBtn');
+
+    // State: Are we signing up or signing in?
+    let isSignUp = false;
+
+    // Helpers to switch views
+    function showStep(stepToShow) {
+      [step1, step2, step3, step4].forEach(s => s.classList.add('hidden'));
+      stepToShow.classList.remove('hidden');
+      gmailEmailPassForm.classList.add('hidden'); // reset gmail email/pass form
+      gmailEmail.value = '';
+      gmailPassword.value = '';
+      username.value = '';
+      namePassPassword.value = '';
+      btnShowEmailPassForm.textContent = "Login With Email/Password";
+    }
+
+    // When clicking Sign Up or Sign In, go to step 2
+    btnSignUp.onclick = () => {
+      isSignUp = true;
+      showStep(step2);
+    };
+    btnSignIn.onclick = () => {
+      isSignUp = false;
+      showStep(step2);
+    };
+
+    backToStep1.onclick = () => showStep(step1);
+
+    // Step 2 buttons
+    btnGmailMethod.onclick = () => {
+      showStep(step3);
+    };
+    btnNamePassMethod.onclick = () => {
+      showStep(step4);
+    };
+    backToStep2fromGmail.onclick = () => showStep(step2);
+    backToStep2fromNamePass.onclick = () => showStep(step2);
+
+    // Gmail login button
+    btnLoginGoogle.onclick = () => {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      auth.signInWithPopup(provider)
+        .then(result => {
+          alert(`Welcome ${result.user.displayName || 'User'}!`);
+          // Do your post-login stuff here
+        })
+        .catch(error => {
+          alert("Google sign-in error: " + error.message);
+        });
+    };
+
+    // Toggle email/password form inside Gmail login step
+    btnShowEmailPassForm.onclick = () => {
+      if (gmailEmailPassForm.classList.contains('hidden')) {
+        gmailEmailPassForm.classList.remove('hidden');
+        btnShowEmailPassForm.textContent = "Hide Email/Password Login";
+      } else {
+        gmailEmailPassForm.classList.add('hidden');
+        btnShowEmailPassForm.textContent = "Login With Email/Password";
+      }
+    };
+
+    // Gmail Email/Password login (step 3)
+    gmailEmailPassLoginBtn.onclick = () => {
+      const emailVal = gmailEmail.value.trim();
+      const passVal = gmailPassword.value;
+
+      if (!emailVal || !passVal) {
+        alert("Please enter email and password");
+        return;
+      }
+
+      if (isSignUp) {
+        auth.createUserWithEmailAndPassword(emailVal, passVal)
+          .then(userCredential => {
+            alert("Account created successfully!");
+          })
+          .catch(error => alert("Error: " + error.message));
+      } else {
+        auth.signInWithEmailAndPassword(emailVal, passVal)
+          .then(userCredential => {
+            alert("Logged in successfully!");
+          })
+          .catch(error => alert("Error: " + error.message));
+      }
+    };
+
+    // Name & Password login/signup (step 4)
+    namePassLoginBtn.onclick = () => {
+      const userVal = username.value.trim();
+      const passVal = namePassPassword.value;
+
+      if (!userVal || !passVal) {
+        alert("Please enter username and password");
+        return;
+      }
+
+      // Example for demo — normally you'd call your own backend for username auth
+      if (isSignUp) {
+        alert(`Sign up with username: ${userVal} and password: ${passVal}`);
+      } else {
+        alert(`Sign in with username: ${userVal} and password: ${passVal}`);
+      }
+    };
+  </script>
+
+</body>
+</html>

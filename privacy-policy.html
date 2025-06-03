@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy Policy - EmbDesign</title>
+  <style>
+    :root {
+      --green: #00ff88;
+      --lime: #c6ff00;
+      --dark-bg: #010a05;
+      --glass: rgba(0, 255, 136, 0.07);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(ellipse at top, #001a0a, #000);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--green);
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      font-size: 2.6rem;
+      font-weight: 900;
+      padding: 30px 10px;
+      background: linear-gradient(90deg, var(--green), var(--lime));
+      color: #000;
+      border-radius: 14px;
+      box-shadow: 0 0 35px var(--lime);
+    }
+
+    main {
+      max-width: 960px;
+      margin: 40px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .section-card {
+      background: var(--glass);
+      border: 1.8px solid var(--green);
+      border-radius: 16px;
+      padding: 22px 25px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 18px rgba(0, 255, 136, 0.3);
+      transition: all 0.4s ease;
+      cursor: pointer;
+    }
+
+    .section-card:hover {
+      transform: scale(1.018);
+      box-shadow: 0 0 30px var(--lime);
+    }
+
+    .section-title {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--lime);
+    }
+
+    .section-content {
+      margin-top: 14px;
+      font-size: 1.1rem;
+      color: #ccffe6;
+      line-height: 1.7;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.6s ease;
+    }
+
+    .section-card.active .section-content {
+      max-height: 2500px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 28px 0;
+      color: #aaffcc;
+      font-size: 0.92rem;
+    }
+
+    @media (hover: hover) {
+      .section-card:hover .section-content {
+        max-height: 2500px;
+      }
+    }
+
+    a {
+      color: var(--lime);
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <header>Privacy Policy - EmbDesign</header>
+
+  <main>
+
+    <div class="section-card">
+      <div class="section-title">Information Collection</div>
+      <div class="section-content">
+        We collect various types of information in order to provide and improve our services. This includes:
+        <ul>
+          <li>Personal information you provide during registration and purchase, such as name, email address, and payment details.</li>
+          <li>Automatically collected data such as IP address, browser type, device information, and browsing behavior on our website.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">Use of Information</div>
+      <div class="section-content">
+        The information we collect is used to:
+        <ul>
+          <li>Process your purchases and deliver products.</li>
+          <li>Improve our website, products, and customer service.</li>
+          <li>Communicate with you about updates, promotions, and important information.</li>
+          <li>Ensure security and prevent fraud or unauthorized access.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">Cookies and Tracking</div>
+      <div class="section-content">
+        We use cookies and similar tracking technologies to enhance user experience, analyze site traffic, and personalize content. You can control cookie settings via your browser preferences.
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">Data Sharing and Disclosure</div>
+      <div class="section-content">
+        We do not sell or rent your personal information to third parties. However, we may share your data with trusted service providers who assist us in operating the website, conducting business, or servicing you, under strict confidentiality agreements.
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">Data Security</div>
+      <div class="section-content">
+        We implement appropriate technical and organizational measures to safeguard your personal information from unauthorized access, alteration, disclosure, or destruction.
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">Your Rights</div>
+      <div class="section-content">
+        You have the right to access, correct, or delete your personal data held by us. You may also opt out of marketing communications by following the unsubscribe instructions in emails or contacting support.
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">Children's Privacy</div>
+      <div class="section-content">
+        Our services are not directed to individuals under the age of 13. We do not knowingly collect personal information from children under 13. If you believe we have collected such data, please contact us to request deletion.
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">Changes to This Policy</div>
+      <div class="section-content">
+        We reserve the right to update this Privacy Policy at any time. Changes will be posted on this page with an updated effective date. Your continued use of our services after changes constitutes acceptance of the updated policy.
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">Contact Us</div>
+      <div class="section-content">
+        If you have any questions or concerns regarding our Privacy Policy, please contact us at <a href="mailto:support@embdesign.shop">support@embdesign.shop</a>.
+      </div>
+    </div>
+
+  </main>
+
+  <footer>© 2025 EmbDesign. All rights reserved.</footer>
+
+  <script>
+    const sections = document.querySelectorAll('.section-card');
+    sections.forEach(section => {
+      section.addEventListener('click', () => {
+        sections.forEach(s => s !== section && s.classList.remove('active'));
+        section.classList.toggle('active');
+      });
+    });
+  </script>
+
+</body>
+</html>

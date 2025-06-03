@@ -1,0 +1,158 @@
+/* Contact Page Styles */
+.contact-page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    display: grid;
+    grid-gap: 40px;
+}
+
+.contact-form-section {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.contact-info-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.contact-info-card {
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.contact-info-card:hover {
+    transform: translateY(-5px);
+}
+
+.contact-info-card h3 {
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.contact-info-card h3 i {
+    margin-right: 10px;
+    color: #3498db;
+}
+
+.contact-info-card p {
+    margin: 0;
+    color: #7f8c8d;
+    line-height: 1.6;
+}
+
+.contact-map-section {
+    margin-top: 30px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Contact Form 7 Styles */
+.wpcf7-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.wpcf7-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.wpcf7-form input,
+.wpcf7-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.wpcf7-form textarea {
+    min-height: 150px;
+}
+
+.wpcf7-submit {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.wpcf7-submit:hover {
+    background: #2980b9;
+}
+
+.product-downloads ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.product-downloads li a {
+    display: inline-block;
+    background: #4CAF50;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.product-downloads li a:hover {
+    background: #45a049;
+}
+/* ADD THE NEW BUTTON STYLES HERE */
+.submit-product-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.submit-product-button:hover {
+    background-color: #45a049; /* Darker green */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.submit-product-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+}
+
+.button-icon {
+    margin-right: 8px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.button-text {
+    letter-spacing: 0.5px;
+}

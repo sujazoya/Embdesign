@@ -1,0 +1,65 @@
+.wp-list-table .status-badge {
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.wp-list-table .status-pending {
+    background: #fff8e5;
+    color: #dba617;
+}
+
+.wp-list-table .status-approved {
+    background: #ecf7ed;
+    color: #4ab866;
+}
+
+.wp-list-table .status-declined {
+    background: #fdeaea;
+    color: #dc3232;
+}
+
+.application-details {
+    background: white;
+    padding: 20px;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.application-files {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.file-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.file-icon {
+    width: 100px;
+    height: 100px;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.file-link {
+    display: block;
+    margin-top: 5px;
+}
+
+.application-actions {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}

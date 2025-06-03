@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
+<head>
+    <meta charset="<?php bloginfo('charset'); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Submission Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        body {
+            background: rgba(0, 0, 139, 0.85);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .wcsu-form-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 700px;
+            padding: 40px;
+            margin: 0 auto;
+        }
+        
+        .wcsu-form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .wcsu-form-header h2 {
+            color: #2c3e50;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .wcsu-form-group {
+            margin-bottom: 20px;
+        }
+        
+        .wcsu-form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+        
+        .wcsu-form-control {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            transition: all 0.3s;
+        }
+        
+        .wcsu-form-control:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+        
+        textarea.wcsu-form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .wcsu-file-upload-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .wcsu-file-upload-item label {
+            font-size: 13px;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .wcsu-submit-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+        
+        .wcsu-submit-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .wcsu-form-footer {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 12px;
+            color: #7f8c8d;
+        }
+        
+        .wcsu-specs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        @media (max-width: 600px) {
+            .wcsu-form-container {
+                padding: 30px 20px;
+            }
+            
+            .wcsu-file-upload-grid,
+            .wcsu-specs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wcsu-form-container">
+        <div class="wcsu-form-header">
+            <h2>✨ Submit Your EmbDesign ✨</h2>
+        </div>
+        
+        <form method="post" enctype="multipart/form-data" class="wcsu-product-form">
+            <?php wp_nonce_field('wcsu_product_submission', 'wcsu_nonce'); ?>
+            
+            <div class="wcsu-form-group">
+                <label for="wcsu-product-title">Product Title</label>
+                <input type="text" id="wcsu-product-title" name="product_title" class="wcsu-form-control" required>
+            </div>
+            
+            <div class="wcsu-form-group">
+                <label for="wcsu-product-desc">Description</label>
+                <textarea id="wcsu-product-desc" name="product_desc" class="wcsu-form-control" required></textarea>
+            </div>
+            
+            <div class="wcsu-form-group">
+                <label>Design Specifications</label>
+                <div class="wcsu-specs-grid">
+                    <input type="text" name="design_code" class="wcsu-form-control" placeholder="Design Code">
+                    <input type="text" name="stitches" class="wcsu-form-control" placeholder="Stitches">
+                    <input type="text" name="area" class="wcsu-form-control" placeholder="Area">
+                    <input type="number" step="0.1" name="height" class="wcsu-form-control" placeholder="Height (MM)">
+                    <input type="number" step="0.1" name="width" class="wcsu-form-control" placeholder="Width (MM)">
+                    <input type="text" name="formats" class="wcsu-form-control" placeholder="Formats">
+                    <input type="text" name="needle" class="wcsu-form-control" placeholder="Needle">
+                </div>
+            </div>
+            
+            <div class="wcsu-form-group">
+                <label for="wcsu-price">Price</label>
+                <input type="number" min="0" step="0.01" id="wcsu-price" name="price" class="wcsu-form-control" required>
+            </div>
+            
+            <div class="wcsu-form-group">
+                <label>Gallery Image</label>
+                <input type="file" name="gallery" class="wcsu-form-control" accept="image/*">
+            </div>
+            
+            <div class="wcsu-form-group">
+                <label>Design Files</label>
+                <div class="wcsu-file-upload-grid">
+                    <div class="wcsu-file-upload-item">
+                        <label>Emb e4</label>
+                        <input type="file" name="emb_e4" class="wcsu-form-control" accept=".emb">
+                    </div>
+                    <div class="wcsu-file-upload-item">
+                        <label>Emb W6</label>
+                        <input type="file" name="emb_w6" class="wcsu-form-control" accept=".emb">
+                    </div>
+                    <div class="wcsu-file-upload-item">
+                        <label>DST</label>
+                        <input type="file" name="dst" class="wcsu-form-control" accept=".dst">
+                    </div>
+                    <div class="wcsu-file-upload-item">
+                        <label>All Zip</label>
+                        <input type="file" name="all_zip" class="wcsu-form-control" accept=".zip">
+                    </div>
+                    <div class="wcsu-file-upload-item">
+                        <label>Other</label>
+                        <input type="file" name="other" class="wcsu-form-control">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="wcsu-form-group">
+                <label for="wcsu-category">Select Category</label>
+                <select id="wcsu-category" name="category" class="wcsu-form-control" required>
+                    <option value="">-- Select Category --</option>
+                    <?php
+                    // Ensure WooCommerce is active
+                    if (class_exists('WooCommerce')) {
+                        $product_categories = get_terms(array(
+                            'taxonomy'   => 'product_cat',
+                            'hide_empty' => false,
+                            'orderby'    => 'name',
+                            'order'      => 'ASC'
+                        ));
+                        
+                        if (!empty($product_categories) && !is_wp_error($product_categories)) {
+                            foreach ($product_categories as $category) {
+                                echo '<option value="' . esc_attr($category->term_id) . '">' . esc_html($category->name) . '</option>';
+                            }
+                        }
+                    } else {
+                        echo '<option value="">WooCommerce not active</option>';
+                    }
+                    ?>
+                </select>
+            </div>
+            
+            <button type="submit" name="wcsu_submit" class="wcsu-submit-btn">🚀 Submit Product</button>
+            
+            <div class="wcsu-form-footer">
+                This form is protected by micro/IPOS website to ensure Dataset data, and access all content verify.
+            </div>
+        </form>
+    </div>
+</body>
+</html>

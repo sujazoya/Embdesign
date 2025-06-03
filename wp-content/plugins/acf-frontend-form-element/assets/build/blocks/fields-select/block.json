@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "frontend-admin/fields-select-field",
+  "title": "ACF Fields Select",
+  "description": "Displays ACF fields and field groups.",
+  "category": "frontend-admin",
+  "textdomain": "frontend-admin",
+  "icon": "list-view",
+  "supports": {
+    "align": [
+      "wide"
+    ]
+  },
+  "attributes": {
+    "fields_select": {
+      "type": "array",
+      "default": []
+    },
+    "fields_exclude": {
+      "type": "array",
+      "default": []
+    }
+  },
+  "usesContext": [
+    "frontend-admin/form/form_settings",
+    "frontend-admin/form/form_key"
+  ],
+  "editorScript": "file:../../fields-select/index.js"
+}

@@ -1,0 +1,1 @@
+!function(n){n(document).ready((function(){var a=n(".fea-upgrade-pro-action");a.length&&a.find("a.fea-dismiss-notice").click((function(t){t.preventDefault(),a.remove(),n.post(ajaxurl,{action:"fea-upgrade-pro-dismiss",_n:n(this).attr("data-nonce")},(function(n){}))}))}))}(jQuery);

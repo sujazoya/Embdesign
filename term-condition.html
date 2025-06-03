@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Terms & Conditions - EmbDesign</title>
+  <style>
+    :root {
+      --green: #00ff88;
+      --lime: #c6ff00;
+      --dark-bg: #010a05;
+      --glass: rgba(0, 255, 136, 0.07);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(ellipse at top, #001a0a, #000);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--green);
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      font-size: 2.6rem;
+      font-weight: 900;
+      padding: 30px 10px;
+      background: linear-gradient(90deg, var(--green), var(--lime));
+      color: #000;
+      border-radius: 14px;
+      box-shadow: 0 0 35px var(--lime);
+    }
+
+    main {
+      max-width: 960px;
+      margin: 40px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .section-card {
+      background: var(--glass);
+      border: 1.8px solid var(--green);
+      border-radius: 16px;
+      padding: 22px 25px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 18px rgba(0, 255, 136, 0.3);
+      transition: all 0.4s ease;
+      cursor: pointer;
+    }
+
+    .section-card:hover {
+      transform: scale(1.018);
+      box-shadow: 0 0 30px var(--lime);
+    }
+
+    .section-title {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--lime);
+    }
+
+    .section-content {
+      margin-top: 14px;
+      font-size: 1.1rem;
+      color: #ccffe6;
+      line-height: 1.7;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.6s ease;
+      white-space: pre-line;
+    }
+
+    .section-card.active .section-content {
+      max-height: 4000px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 28px 0;
+      color: #aaffcc;
+      font-size: 0.92rem;
+    }
+
+    @media (hover: hover) {
+      .section-card:hover .section-content {
+        max-height: 4000px;
+      }
+    }
+
+    a {
+      color: var(--lime);
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <header>Terms & Conditions - EmbDesign</header>
+
+  <main>
+
+    <div class="section-card">
+      <div class="section-title">1. Introduction</div>
+      <div class="section-content">
+        Welcome to EmbDesign. By accessing or using our website, you agree to comply with and be bound by these Terms and Conditions. Please read them carefully.
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">2. Intellectual Property</div>
+      <div class="section-content">
+        All content on this site, including but not limited to designs, logos, text, graphics, and software, are the property of EmbDesign or its licensors and are protected by applicable intellectual property laws.
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">3. User Responsibilities</div>
+      <div class="section-content">
+        Users agree to use the site for lawful purposes only and not to engage in any activity that may harm, disrupt, or interfere with the functioning of the site or other users' access.
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">4. Product Usage</div>
+      <div class="section-content">
+        Products purchased from EmbDesign are for personal and commercial use as specified in the product description. Redistribution or resale without permission is prohibited.
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">5. Payment and Pricing</div>
+      <div class="section-content">
+        All prices are listed in the currency specified and are subject to change without prior notice. Payments must be completed successfully to access products.
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">6. Refund Policy</div>
+      <div class="section-content">
+        Please refer to our Refund Policy page for details on eligibility and process for refunds.
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">7. Limitation of Liability</div>
+      <div class="section-content">
+        EmbDesign is not liable for any indirect, incidental, or consequential damages arising from the use or inability to use our products or website.
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">8. Termination</div>
+      <div class="section-content">
+        We reserve the right to terminate or suspend access to our services immediately, without prior notice or liability, for any reason including breach of these Terms.
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">9. Governing Law</div>
+      <div class="section-content">
+        These Terms shall be governed and construed in accordance with the laws of the jurisdiction in which EmbDesign operates, without regard to conflict of law principles.
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">10. Changes to Terms</div>
+      <div class="section-content">
+        We may update these Terms periodically. Continued use of the site after changes means you accept the updated Terms.
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">11. Contact Information</div>
+      <div class="section-content">
+        For any questions or concerns regarding these Terms, please contact us at <a href="mailto:support@embdesign.shop">support@embdesign.shop</a>.
+      </div>
+    </div>
+
+  </main>
+
+  <footer>© 2025 EmbDesign. All rights reserved.</footer>
+
+  <script>
+    const sections = document.querySelectorAll('.section-card');
+    sections.forEach(section => {
+      section.addEventListener('click', () => {
+        sections.forEach(s => s !== section && s.classList.remove('active'));
+        section.classList.toggle('active');
+      });
+    });
+  </script>
+
+</body>
+</html>

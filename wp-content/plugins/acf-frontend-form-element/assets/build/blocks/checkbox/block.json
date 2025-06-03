@@ -1,0 +1,75 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "frontend-admin/checkbox-field",
+  "title": "Checkbox Field",
+  "description": "Displays a checkbox field.",
+  "category": "frontend-admin",
+  "textdomain": "frontend-admin",
+  "icon": "list-view",
+  "supports": {
+    "align": [
+      "wide"
+    ]
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "default": ""
+    },
+    "label": {
+      "type": "string",
+      "default": "Checkbox"
+    },
+    "hide_label": {
+      "type": "boolean",
+      "default": ""
+    },
+    "required": {
+      "type": "boolean",
+      "default": ""
+    },
+    "instructions": {
+      "type": "string",
+      "default": ""
+    },
+    "layout": {
+      "type": "string",
+      "default": "vertical"
+    },
+    "choices": {
+      "type": "array",
+      "default": [
+        {
+          "value": "red",
+          "label": "Red"
+        },
+        {
+          "value": "blue",
+          "label": "Blue"
+        }
+      ]
+    },
+    "default_value": {
+      "type": "string",
+      "default": ""
+    },
+    "allow_custom": {
+      "type": "boolean",
+      "default": false
+    },
+    "save_custom": {
+      "type": "boolean",
+      "default": false
+    },
+    "toggle": {
+      "type": "boolean",
+      "default": false
+    },
+    "return_format": {
+      "type": "string",
+      "default": "value"
+    }
+  },
+  "editorScript": "file:../../checkbox/index.js"
+}

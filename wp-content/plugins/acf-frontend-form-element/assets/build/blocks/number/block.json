@@ -1,0 +1,65 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "frontend-admin/number-field",
+  "title": "Number Field",
+  "description": "Displays a number field.",
+  "category": "frontend-admin",
+  "textdomain": "frontend-admin",
+  "supports": {
+    "align": [
+      "wide"
+    ]
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "default": ""
+    },
+    "label": {
+      "type": "string",
+      "default": "Number Field"
+    },
+    "hide_label": {
+      "type": "boolean",
+      "default": ""
+    },
+    "required": {
+      "type": "boolean",
+      "default": ""
+    },
+    "default_value": {
+      "type": "number",
+      "default": ""
+    },
+    "placeholder": {
+      "type": "string",
+      "default": ""
+    },
+    "instructions": {
+      "type": "string",
+      "default": ""
+    },
+    "prepend": {
+      "type": "string",
+      "default": ""
+    },
+    "append": {
+      "type": "string",
+      "default": ""
+    },
+    "min": {
+      "type": "number",
+      "default": "1"
+    },
+    "max": {
+      "type": "number",
+      "default": "100"
+    },
+    "step": {
+      "type": "number",
+      "default": ""
+    }
+  },
+  "editorScript": "file:../../number/index.js"
+}

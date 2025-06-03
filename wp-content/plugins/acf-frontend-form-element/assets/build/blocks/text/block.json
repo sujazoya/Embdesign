@@ -1,0 +1,66 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "frontend-admin/text-field",
+  "title": "Text Field",
+  "description": "Displays a text field.",
+  "category": "frontend-admin",
+  "textdomain": "frontend-admin",
+  "icon": "list-view",
+  "supports": {
+    "align": [
+      "wide"
+    ]
+  },
+  "usesContext": [
+    "frontend-admin/form/form_settings",
+    "frontend-admin/form/form_key"
+  ],
+  "attributes": {
+    "name": {
+      "type": "string",
+      "default": ""
+    },
+    "field_key": {
+      "type": "string",
+      "default": ""
+    },
+    "label": {
+      "type": "string",
+      "default": "Text Field"
+    },
+    "hide_label": {
+      "type": "boolean",
+      "default": ""
+    },
+    "required": {
+      "type": "boolean",
+      "default": ""
+    },
+    "default_value": {
+      "type": "string",
+      "default": ""
+    },
+    "placeholder": {
+      "type": "string",
+      "default": ""
+    },
+    "instructions": {
+      "type": "string",
+      "default": ""
+    },
+    "prepend": {
+      "type": "string",
+      "default": ""
+    },
+    "append": {
+      "type": "string",
+      "default": ""
+    },
+    "maxlength": {
+      "type": "number",
+      "default": ""
+    }
+  },
+  "editorScript": "file:../../text/index.js"
+}

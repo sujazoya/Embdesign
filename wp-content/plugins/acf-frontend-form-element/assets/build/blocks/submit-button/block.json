@@ -1,0 +1,26 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "frontend-admin/submit-button",
+  "title": "Submit Button",
+  "description": "Displays a submit button.",
+  "category": "frontend-admin",
+  "textdomain": "frontend-admin",
+  "icon": "list-view",
+  "supports": {
+    "align": [
+      "wide"
+    ]
+  },
+  "usesContext": [
+    "frontend-admin/form/form_settings",
+    "frontend-admin/form/form_key"
+  ],
+  "attributes": {
+    "button_text": {
+      "type": "string",
+      "default": "Submit"
+    }
+  },
+  "editorScript": "file:../../submit-button/index.js"
+}

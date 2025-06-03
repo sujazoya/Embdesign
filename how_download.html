@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>How to Download - EmbDesign</title>
+  <style>
+    :root {
+      --green: #00ff88;
+      --lime: #c6ff00;
+      --dark-bg: #010a05;
+      --glass: rgba(0, 255, 136, 0.07);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(ellipse at top, #001a0a, #000);
+      font-family: 'Segoe UI', sans-serif;
+      color: var(--green);
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: bold;
+      padding: 25px 10px;
+      background: linear-gradient(90deg, var(--green), var(--lime));
+      color: #000;
+      border-radius: 14px;
+      box-shadow: 0 0 30px var(--lime);
+    }
+
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .step-card {
+      background: var(--glass);
+      border: 1px solid var(--green);
+      border-radius: 16px;
+      padding: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+      transition: all 0.4s ease;
+    }
+
+    .step-card:hover {
+      transform: scale(1.015);
+      box-shadow: 0 0 25px var(--lime);
+      cursor: pointer;
+    }
+
+    .step-title {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: var(--lime);
+    }
+
+    .step-desc {
+      margin-top: 12px;
+      font-size: 1.05rem;
+      color: #ccffe6;
+      line-height: 1.6;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.6s ease;
+    }
+
+    .step-card.active .step-desc {
+      max-height: 1000px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 0;
+      color: #aaffcc;
+      font-size: 0.9rem;
+    }
+
+    @media (hover: hover) {
+      .step-card:hover .step-desc {
+        max-height: 1000px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>How to Download Designs • EmbDesign</header>
+
+  <main>
+
+    <div class="step-card">
+      <div class="step-title">1. Choose a Design</div>
+      <div class="step-desc">
+        Browse through our embroidery design collections and choose the one you like. You can use the search bar, categories, or filters to find the perfect design. All designs have multiple previews, details, and available file formats clearly listed.
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-title">2. Add to Cart</div>
+      <div class="step-desc">
+        Once you've selected your design, click "Add to Cart". You can continue browsing or go directly to the cart to proceed with checkout. Make sure the file format (EMB, DST, PES, etc.) is suitable for your embroidery machine.
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-title">3. Complete Checkout</div>
+      <div class="step-desc">
+        Go to the checkout page, fill in your details, and make payment through our secure payment gateway. We support all major payment options including UPI, net banking, credit/debit cards, and wallets.
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-title">4. Instant Download</div>
+      <div class="step-desc">
+        After a successful transaction, you'll be redirected to your order confirmation page. Your purchased designs will be instantly available for download there. You’ll also get an email with the download link.
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-title">5. Access from Account Anytime</div>
+      <div class="step-desc">
+        Login to your EmbDesign account and go to "My Orders". All your purchased embroidery designs are stored here permanently, and can be re-downloaded anytime, anywhere. No expiry or limit on downloads.
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-title">6. Having Trouble?</div>
+      <div class="step-desc">
+        If you face any issues like download error, file mismatch, or missing format, don’t worry. Just contact us with your order ID and we'll resolve the issue immediately. Support is available 24/7 via chat and email.
+      </div>
+    </div>
+
+  </main>
+
+  <footer>© 2025 EmbDesign. All rights reserved.</footer>
+
+  <script>
+    const steps = document.querySelectorAll('.step-card');
+    steps.forEach(step => {
+      step.addEventListener('click', () => {
+        steps.forEach(s => s !== step && s.classList.remove('active'));
+        step.classList.toggle('active');
+      });
+    });
+  </script>
+
+</body>
+</html>

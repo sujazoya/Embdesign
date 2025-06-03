@@ -1,0 +1,205 @@
+/* style.css */
+.wcsu-form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.wcsu-form {
+    background: white;
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    padding: 0;
+    width: calc(100% - 80px);
+    max-width: 900px;
+    margin: 20px auto;
+    border: 1px solid #e0e0e0;
+    overflow: hidden;
+}
+
+.wcsu-form h2 {
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 30px;
+    font-size: 26px;
+    font-weight: 600;
+    background-color: #254D70;
+    letter-spacing: 0.5px;
+}
+
+.wcsu-form-content {
+    padding: 35px 80px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.wcsu-form-field {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+}
+
+.wcsu-form input:not([type="file"]),
+.wcsu-form textarea,
+.wcsu-form select {
+    width: 100%;
+    padding: 15px 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+    font-family: inherit;
+}
+
+.wcsu-form input[type="number"] {
+    appearance: textfield;
+}
+
+.wcsu-form input[type="number"]::-webkit-outer-spin-button,
+.wcsu-form input[type="number"]::-webkit-inner-spin-button {
+    appearance: none;
+    margin: 0;
+}
+
+.wcsu-form input:not([type="file"]):focus,
+.wcsu-form textarea:focus,
+.wcsu-form select:focus {
+    outline: none;
+    border-color: #6e8efb;
+    box-shadow: 0 0 0 2px rgba(110, 142, 251, 0.2);
+}
+
+.wcsu-form textarea {
+    min-height: 140px;
+    resize: vertical;
+    border-radius: 15px;
+}
+
+.wcsu-form label {
+    font-weight: 500;
+    color: #555;
+    font-size: 15px;
+    padding-left: 5px;
+}
+
+.wcsu-form button[type="submit"] {
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    color: white;
+    border: none;
+    padding: 16px 30px;
+    font-size: 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.wcsu-form button[type="submit"]:hover {
+    background: linear-gradient(135deg, #5d7de8, #9666d6);
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.12);
+}
+
+.wcsu-upload-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.wcsu-upload-grid > div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.wcsu-upload-grid input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    border: 2px dashed #d1d1d1;
+    border-radius: 12px;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+}
+
+.wcsu-upload-grid input[type="file"]:hover {
+    border-color: #a777e3;
+    background-color: #f5f1ff;
+}
+
+.upload-errors {
+    color: #dc3545;
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.upload-errors div {
+    margin: 5px 0;
+}
+
+.wcsu-form-field select[multiple] {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background-color: #fff;
+    min-height: 120px;
+}
+
+.wcsu-form-field .description {
+    color: #666;
+    font-style: italic;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .wcsu-form {
+        width: calc(100% - 40px);
+    }
+    .wcsu-form-content {
+        padding: 20px 25px;
+    }
+}
+
+@media (max-width: 700px) {
+    .wcsu-form-content {
+        padding: 25px 20px;
+    }
+    .wcsu-upload-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 500px) {
+    .wcsu-form {
+        width: calc(100% - 20px);
+    }
+    .wcsu-form h2 {
+        padding: 20px;
+        font-size: 22px;
+    }
+    .wcsu-form-content {
+        padding: 20px 15px;
+    }
+    .wcsu-form input:not([type="file"]),
+    .wcsu-form textarea,
+    .wcsu-form select {
+        padding: 12px 15px;
+    }
+}

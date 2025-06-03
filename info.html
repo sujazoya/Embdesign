@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EmbDesign Info Pages</title>
+  <style>
+    :root {
+      --green: #00ff88;
+      --lime: #ccff00;
+      --black-bg: #0a0f0d;
+      --glass-bg: rgba(255, 255, 255, 0.05);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: radial-gradient(ellipse at top left, #000000, #0a0f0d);
+      color: var(--lime);
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: bold;
+      padding: 20px 0;
+      background: linear-gradient(90deg, var(--green), var(--lime));
+      color: #000;
+      border-radius: 12px;
+      box-shadow: 0 0 30px var(--lime);
+      margin-bottom: 30px;
+    }
+
+    main {
+      max-width: 900px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    section {
+      background: var(--glass-bg);
+      border: 1px solid var(--lime);
+      border-radius: 15px;
+      padding: 25px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 0 15px rgba(204, 255, 0, 0.3);
+      transition: all 0.4s ease;
+    }
+
+    section:hover {
+      transform: scale(1.01);
+      box-shadow: 0 0 25px var(--green);
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      color: var(--green);
+      margin-bottom: 15px;
+    }
+
+    p, li {
+      color: #f4ffe8;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #baffd9;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+<header>EmbDesign • Information Pages</header>
+
+<main>
+  <section id="plan">
+    <h2>Membership Plans</h2>
+    <p>At EmbDesign, we offer a variety of plans to meet your design download needs. Our premium plans unlock access to exclusive, high-quality embroidery files in various formats suitable for commercial and personal use.</p>
+    <ul>
+      <li><strong>Free Plan:</strong> Access limited designs with watermark.</li>
+      <li><strong>Silver Plan:</strong> Monthly access to 100+ premium downloads. Includes DST, EMB, PES formats.</li>
+      <li><strong>Gold Plan:</strong> Unlimited access to all formats and exclusive releases. Priority support included.</li>
+    </ul>
+  </section>
+
+  <section id="refund">
+    <h2>Refund Policy</h2>
+    <p>Due to the digital nature of embroidery designs, all sales on EmbDesign are final. Once a file is downloaded, it cannot be returned or refunded. However, if you encounter any issue like corrupted files, wrong format, or missing parts, our support team is here to assist you promptly.</p>
+    <p><strong>Exceptions:</strong></p>
+    <ul>
+      <li>If a duplicate payment occurs.</li>
+      <li>Accidental purchase of same file twice within 24 hours.</li>
+      <li>Unsuccessful download after multiple verified attempts.</li>
+    </ul>
+  </section>
+
+  <section id="privacy">
+    <h2>Privacy Policy</h2>
+    <p>Your privacy is important to us. At EmbDesign, we collect minimal personal information necessary to provide you with account access and purchase functionality. We never share or sell your data to third-party entities.</p>
+    <p>Data we collect includes:</p>
+    <ul>
+      <li>Email address</li>
+      <li>Account password (hashed securely)</li>
+      <li>Download and purchase logs</li>
+    </ul>
+    <p>We use secure SSL encryption for all transactions and login sessions.</p>
+  </section>
+
+  <section id="terms">
+    <h2>Terms & Conditions</h2>
+    <p>By using EmbDesign, you agree not to redistribute, resell or alter our embroidery files without permission. Designs are for individual use unless otherwise stated under specific commercial licenses. Unauthorized sharing of designs is strictly prohibited and may lead to account suspension and legal action.</p>
+    <p>All content on EmbDesign is copyrighted. We reserve the right to suspend users who violate platform policies.</p>
+  </section>
+
+  <section id="about">
+    <h2>About Us</h2>
+    <p>EmbDesign is an innovative platform dedicated to embroidery professionals, hobbyists, and machine owners who seek creative and professional-grade design files. Our team consists of designers with decades of experience in textile embroidery, ensuring every uploaded design is tested, scalable, and compatible with most embroidery machines.</p>
+    <p>Our mission is to simplify access to high-quality embroidery files and support the growing crafting community across the globe.</p>
+  </section>
+</main>
+
+<footer>© 2025 EmbDesign. All rights reserved.</footer>
+
+</body>
+</html>

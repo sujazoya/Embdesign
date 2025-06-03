@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Refund Policy - EmbDesign</title>
+  <style>
+    :root {
+      --green: #00ff88;
+      --lime: #c6ff00;
+      --dark-bg: #010a05;
+      --glass: rgba(0, 255, 136, 0.07);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(ellipse at top, #001a0a, #000);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--green);
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      font-size: 2.6rem;
+      font-weight: 900;
+      padding: 30px 10px;
+      background: linear-gradient(90deg, var(--green), var(--lime));
+      color: #000;
+      border-radius: 14px;
+      box-shadow: 0 0 35px var(--lime);
+    }
+
+    main {
+      max-width: 960px;
+      margin: 40px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .section-card {
+      background: var(--glass);
+      border: 1.8px solid var(--green);
+      border-radius: 16px;
+      padding: 22px 25px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 18px rgba(0, 255, 136, 0.3);
+      transition: all 0.4s ease;
+      cursor: pointer;
+    }
+
+    .section-card:hover {
+      transform: scale(1.018);
+      box-shadow: 0 0 30px var(--lime);
+    }
+
+    .section-title {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--lime);
+    }
+
+    .section-content {
+      margin-top: 14px;
+      font-size: 1.1rem;
+      color: #ccffe6;
+      line-height: 1.7;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.6s ease;
+    }
+
+    .section-card.active .section-content {
+      max-height: 1500px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 28px 0;
+      color: #aaffcc;
+      font-size: 0.92rem;
+    }
+
+    @media (hover: hover) {
+      .section-card:hover .section-content {
+        max-height: 1500px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>Refund Policy - EmbDesign</header>
+
+  <main>
+
+    <div class="section-card">
+      <div class="section-title">Refund Eligibility</div>
+      <div class="section-content">
+        At EmbDesign, we strive to provide the best quality embroidery designs and services. However, due to the digital nature of our products, all sales are final. Refunds will only be considered under exceptional circumstances, such as:
+        <ul>
+          <li>Technical issues that prevent you from downloading your purchase</li>
+          <li>Duplicate payments</li>
+          <li>Order cancellations requested within 24 hours of purchase</li>
+        </ul>
+        Please note that change of mind or dissatisfaction with the design after download does not qualify for a refund.
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">How to Request a Refund</div>
+      <div class="section-content">
+        To request a refund, please contact our customer support team at <a href="mailto:support@embdesign.shop" style="color: var(--lime); text-decoration: underline;">support@embdesign.shop</a> with the following details:
+        <ul>
+          <li>Your order ID and purchase date</li>
+          <li>Reason for refund request</li>
+          <li>Any supporting screenshots or error messages</li>
+        </ul>
+        Our support team will review your request and get back to you within 3-5 business days.
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">Refund Process</div>
+      <div class="section-content">
+        If your refund request is approved, the refund will be processed back to the original payment method used during purchase. Please allow 7-10 business days for the refund to reflect in your account depending on your bank or payment provider.
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">Non-Refundable Items</div>
+      <div class="section-content">
+        The following items are non-refundable:
+        <ul>
+          <li>Downloaded embroidery design files</li>
+          <li>Custom or personalized design orders</li>
+          <li>Subscription fees already billed</li>
+          <li>Free designs available for download on the website</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">Contact Us</div>
+      <div class="section-content">
+        For any refund-related queries or assistance, please reach out to our customer support team at <a href="mailto:support@embdesign.shop" style="color: var(--lime); text-decoration: underline;">support@embdesign.shop</a>. We are here to help and ensure you have a smooth experience with EmbDesign.
+      </div>
+    </div>
+
+  </main>
+
+  <footer>© 2025 EmbDesign. All rights reserved.</footer>
+
+  <script>
+    const sections = document.querySelectorAll('.section-card');
+    sections.forEach(section => {
+      section.addEventListener('click', () => {
+        sections.forEach(s => s !== section && s.classList.remove('active'));
+        section.classList.toggle('active');
+      });
+    });
+  </script>
+
+</body>
+</html>

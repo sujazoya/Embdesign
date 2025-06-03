@@ -1,0 +1,146 @@
+# Copyright (C) 2023 Your Name
+# This file is distributed under the same license as the Advanced Product Upload plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Advanced Product Upload 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-15 14:00+0000\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: advanced-product-upload.php:45
+msgid "Settings"
+msgstr ""
+
+#: includes/class-file-uploader.php:36
+msgid "You must be logged in to upload files."
+msgstr ""
+
+#: includes/class-file-uploader.php:40
+msgid "Security check failed."
+msgstr ""
+
+#: includes/class-file-uploader.php:44
+msgid "No file was uploaded."
+msgstr ""
+
+#: includes/class-file-uploader.php:56
+msgid "Invalid file type for %s. Allowed: %s"
+msgstr ""
+
+#: includes/class-file-uploader.php:64
+msgid "File is too large. Maximum size: %s"
+msgstr ""
+
+#: includes/class-file-uploader.php:72
+msgid "Error moving uploaded file."
+msgstr ""
+
+#: includes/class-product-handler.php:34
+msgid "Please <a href=\"%s\">log in</a> to submit a product."
+msgstr ""
+
+#: includes/class-product-handler.php:108
+msgid "Product submitted successfully!"
+msgstr ""
+
+#: templates/product-submission-form.php:6
+msgid "✨ Submit Your Design ✨"
+msgstr ""
+
+#: templates/product-submission-form.php:11
+msgid "How to Upload"
+msgstr ""
+
+#: templates/product-submission-form.php:17
+msgid "Basic Information"
+msgstr ""
+
+#: templates/product-submission-form.php:21
+msgid "Product Title*"
+msgstr ""
+
+#: templates/product-submission-form.php:26
+msgid "Description*"
+msgstr ""
+
+#: templates/product-submission-form.php:31
+msgid "Price*"
+msgstr ""
+
+#: templates/product-submission-form.php:36
+msgid "Design Specifications"
+msgstr ""
+
+#: templates/product-submission-form.php:40
+msgid "Design Code"
+msgstr ""
+
+#: templates/product-submission-form.php:45
+msgid "Stitches"
+msgstr ""
+
+#: templates/product-submission-form.php:50
+msgid "Area (cm²)"
+msgstr ""
+
+#: templates/product-submission-form.php:55
+msgid "Height (mm)"
+msgstr ""
+
+#: templates/product-submission-form.php:60
+msgid "Width (mm)"
+msgstr ""
+
+#: templates/product-submission-form.php:65
+msgid "Formats"
+msgstr ""
+
+#: templates/product-submission-form.php:70
+msgid "Needle"
+msgstr ""
+
+#: templates/product-submission-form.php:75
+msgid "Visual Assets"
+msgstr ""
+
+#: templates/product-submission-form.php:79
+msgid "Drop design preview images here or click to upload"
+msgstr ""
+
+#: templates/product-submission-form.php:80
+msgid "(JPG, PNG, GIF, SVG - Max 5MB each)"
+msgstr ""
+
+#: templates/product-submission-form.php:86
+msgid "Design Files"
+msgstr ""
+
+#: templates/product-submission-form.php:90
+msgid "Drop design files here or click to upload"
+msgstr ""
+
+#: templates/product-submission-form.php:91
+msgid "(EMB, DST, PES, SVG, EPS, ZIP - Max 20MB each)"
+msgstr ""
+
+#: templates/product-submission-form.php:97
+msgid "Categories & Tags"
+msgstr ""
+
+#: templates/product-submission-form.php:101
+msgid "Category"
+msgstr ""
+
+#: templates/product-submission-form.php:110
+msgid "Tags"
+msgstr ""
+
+#: templates/product-submission-form.php:124
+msgid "🚀 Submit Product"
+msgstr ""

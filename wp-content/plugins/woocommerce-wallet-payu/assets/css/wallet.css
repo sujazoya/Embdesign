@@ -1,0 +1,183 @@
+/* Add to your existing CSS */
+.wallet-topup-form .spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Disabled state for buttons */
+button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Main Wallet Container */
+.woocommerce-wallet {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Wallet Header */
+.wallet-header {
+    margin-bottom: 30px;
+}
+
+.wallet-balance-card {
+    background: linear-gradient(135deg, #3498db, #2c3e50);
+    color: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.wallet-balance-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.balance-amount {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+/* Top Up Card */
+.wallet-topup-card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+}
+
+.wallet-topup-card h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: #2c3e50;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
+}
+
+.input-with-currency {
+    position: relative;
+}
+
+.currency-symbol {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: 500;
+    color: #555;
+}
+
+.wallet-topup-form input[type="number"] {
+    width: 100%;
+    padding: 12px 15px 12px 40px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+.wallet-topup-form input[type="number"]:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52,152,219,0.1);
+    outline: none;
+}
+
+.wallet-topup-button {
+    background: #27ae60;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.wallet-topup-button:hover {
+    background: #219955;
+    transform: translateY(-2px);
+}
+
+.wallet-topup-button svg {
+    transition: transform 0.3s;
+}
+
+.wallet-topup-button:hover svg {
+    transform: translateX(3px);
+}
+
+/* Transactions Table */
+.wallet-transactions {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.wallet-transactions h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: #2c3e50;
+}
+
+.wallet-transactions table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.wallet-transactions th {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 2px solid #eee;
+    color: #7f8c8d;
+    font-weight: 500;
+}
+
+.wallet-transactions td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.wallet-transactions tr:last-child td {
+    border-bottom: none;
+}
+
+.wallet-transactions .credit {
+    color: #27ae60;
+}
+
+.wallet-transactions .debit {
+    color: #e74c3c;
+}
