@@ -1,0 +1,153 @@
+/* Admin styles */
+.the-design-order-details,
+.the-design-order-files,
+.the-design-order-proposals,
+.the-design-order-deliverables {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.04);
+}
+
+.the-design-order-detail-row {
+    margin-bottom: 15px;
+}
+
+.the-design-order-detail-row label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.the-design-order-detail-row input[type="text"],
+.the-design-order-detail-row input[type="email"],
+.the-design-order-detail-row select {
+    width: 100%;
+    max-width: 400px;
+}
+
+.the-design-order-file-list,
+.the-design-order-deliverable-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.the-design-order-file-list li,
+.the-design-order-deliverable-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.the-design-order-file-list li:last-child,
+.the-design-order-deliverable-list li:last-child {
+    border-bottom: none;
+}
+
+.the-design-order-remove-file,
+.the-design-order-remove-deliverable {
+    color: #a00;
+    text-decoration: none;
+    border: 1px solid #a00;
+    background: #fff;
+    padding: 2px 8px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.the-design-order-remove-file:hover,
+.the-design-order-remove-deliverable:hover {
+    background: #a00;
+    color: #fff;
+}
+
+.the-design-order-proposal-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+}
+
+.the-design-order-proposal-table th,
+.the-design-order-proposal-table td {
+    padding: 8px 10px;
+    border: 1px solid #e5e5e5;
+    text-align: left;
+}
+
+.the-design-order-proposal-table tr.approved {
+    background-color: #f0fff0;
+}
+
+.the-design-order-approved-label {
+    color: #46b450;
+    font-weight: 600;
+}
+
+.the-design-order-proposal-form {
+    margin-top: 15px;
+}
+
+.the-design-order-proposal-form .the-design-order-form-group {
+    margin-bottom: 10px;
+}
+
+.the-design-order-proposal-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.the-design-order-proposal-form input[type="number"],
+.the-design-order-proposal-form textarea {
+    width: 100%;
+    max-width: 400px;
+}
+
+.the-design-order-proposal-form textarea {
+    min-height: 80px;
+}
+
+.the-design-order-upload-deliverables {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.the-design-order-complete-order {
+    margin-top: 15px;
+}
+
+/* Status labels */
+.the-design-order-status {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+    background: #777;
+}
+
+.the-design-order-status-new {
+    background: #ffba00;
+}
+
+.the-design-order-status-in_progress {
+    background: #1e8cbe;
+}
+
+.the-design-order-status-design_received {
+    background: #46b450;
+}
+
+.the-design-order-status-completed {
+    background: #8250e6;
+}
+
+.the-design-order-status-cancelled {
+    background: #a00;
+}

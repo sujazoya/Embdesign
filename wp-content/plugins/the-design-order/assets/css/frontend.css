@@ -1,0 +1,152 @@
+/* Frontend styles */
+.the-design-order-form {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.04);
+}
+
+.the-design-order-notice {
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    border-left: 4px solid transparent;
+}
+
+.the-design-order-notice.error {
+    border-left-color: #dc3232;
+    background-color: #fbeaea;
+}
+
+.the-design-order-form-group {
+    margin-bottom: 20px;
+}
+
+.the-design-order-form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.the-design-order-form-group input[type="text"],
+.the-design-order-form-group input[type="email"],
+.the-design-order-form-group input[type="tel"],
+.the-design-order-form-group textarea {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.the-design-order-form-group textarea {
+    min-height: 120px;
+}
+
+.the-design-order-file-upload {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.the-design-order-upload-button {
+    margin-right: 10px;
+    padding: 8px 15px;
+    background: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.the-design-order-upload-button:hover {
+    background: #eee;
+}
+
+.the-design-order-file-info {
+    color: #666;
+}
+
+.the-design-order-file-list {
+    margin: 10px 0;
+    padding: 0;
+    list-style: none;
+}
+
+.the-design-order-file-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 10px;
+    margin-bottom: 5px;
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 3px;
+}
+
+.the-design-order-file-list li .the-design-order-remove-file {
+    color: #a00;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.the-design-order-file-hint {
+    color: #666;
+    font-style: italic;
+}
+
+.the-design-order-form-submit {
+    margin-top: 20px;
+}
+
+/* Orders list */
+.the-design-order-list {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.the-design-order-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.the-design-order-table th,
+.the-design-order-table td {
+    padding: 12px 15px;
+    border: 1px solid #e5e5e5;
+    text-align: left;
+}
+
+.the-design-order-table th {
+    background: #f9f9f9;
+}
+
+.the-design-order-status {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+    background: #777;
+}
+
+.the-design-order-status-new {
+    background: #ffba00;
+}
+
+.the-design-order-status-in_progress {
+    background: #1e8cbe;
+}
+
+.the-design-order-status-design_received {
+    background: #46b450;
+}
+
+.the-design-order-status-completed {
+    background: #8250e6;
+}
+
+.the-design-order-status-cancelled {
+    background: #a00;
+}

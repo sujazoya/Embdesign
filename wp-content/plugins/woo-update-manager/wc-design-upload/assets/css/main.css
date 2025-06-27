@@ -1,0 +1,414 @@
+/* Main Form Container */
+.wcdu-form-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+.wcdu-form-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(90deg, #6e45e2 0%, #88d3ce 100%);
+}
+
+/* Form Header */
+.wcdu-form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.wcdu-form-header h2 {
+    color: #2d3748;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.wcdu-form-header p {
+    color: #718096;
+    font-size: 1rem;
+}
+
+/* Form Elements */
+.wcdu-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.wcdu-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #4a5568;
+    font-size: 0.95rem;
+}
+
+.wcdu-form input[type="text"],
+.wcdu-form input[type="number"],
+.wcdu-form input[type="file"],
+.wcdu-form select,
+.wcdu-form textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: #f8fafc;
+}
+
+.wcdu-form input[type="text"]:focus,
+.wcdu-form input[type="number"]:focus,
+.wcdu-form select:focus,
+.wcdu-form textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    background-color: #ffffff;
+}
+
+.wcdu-form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* File Upload Styling */
+.wcdu-file-upload {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    width: 100%;
+}
+
+.wcdu-file-upload input[type="file"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.wcdu-file-upload-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    border: 2px dashed #cbd5e0;
+    border-radius: 8px;
+    background-color: #f8fafc;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.wcdu-file-upload-label:hover {
+    border-color: #a0aec0;
+    background-color: #edf2f7;
+}
+
+.wcdu-file-upload-label .dashicons {
+    margin-right: 0.5rem;
+    color: #667eea;
+}
+
+.wcdu-file-name {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: #718096;
+}
+
+/* Grid Layout for File Uploads */
+.wcdu-upload-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.wcdu-upload-item {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 1rem;
+    background: #f8fafc;
+}
+
+.wcdu-upload-item label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.wcdu-upload-item label .dashicons {
+    margin-right: 0.5rem;
+    color: #667eea;
+}
+
+/* Tags Grid */
+.wcdu-tags-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.75rem;
+    margin: 1rem 0;
+}
+
+.wcdu-tag-item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    background: #f8fafc;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.wcdu-tag-item:hover {
+    background: #edf2f7;
+}
+
+.wcdu-tag-item input {
+    margin-right: 0.5rem;
+}
+
+/* Submit Button */
+.wcdu-submit-btn {
+    background: linear-gradient(90deg, #6e45e2 0%, #88d3ce 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.wcdu-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(110, 69, 226, 0.2);
+}
+
+.wcdu-submit-btn .dashicons {
+    margin-right: 0.5rem;
+}
+
+/* Help Section */
+.wcdu-help-section {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+}
+
+.wcdu-help-button {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background: #edf2f7;
+    border-radius: 50px;
+    color: #4a5568;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.wcdu-help-button:hover {
+    background: #e2e8f0;
+    color: #2d3748;
+}
+
+.wcdu-help-button .dashicons {
+    margin-right: 0.25rem;
+}
+
+/* Success Message */
+.wcdu-success-message {
+    text-align: center;
+    padding: 2rem;
+}
+
+.wcdu-success-message .dashicons {
+    font-size: 3rem;
+    color: #48bb78;
+    margin-bottom: 1rem;
+}
+
+.wcdu-success-message h3 {
+    font-size: 1.5rem;
+    color: #2d3748;
+    margin-bottom: 1rem;
+}
+
+.wcdu-success-message p {
+    color: #718096;
+    margin-bottom: 2rem;
+}
+
+.wcdu-success-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.wcdu-success-actions a {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.wcdu-success-actions .wcdu-view-product {
+    background: #6e45e2;
+    color: white;
+}
+
+.wcdu-success-actions .wcdu-view-product:hover {
+    background: #5a36c9;
+}
+
+.wcdu-success-actions .wcdu-new-upload {
+    border: 1px solid #e2e8f0;
+    color: #4a5568;
+}
+
+.wcdu-success-actions .wcdu-new-upload:hover {
+    background: #f8fafc;
+}
+
+/* Error Message */
+.wcdu-error-message {
+    color: #e53e3e;
+    background: #fff5f5;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid #e53e3e;
+}
+
+/* Download Page */
+.wcdu-download-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.wcdu-download-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.wcdu-download-header h2 {
+    color: #2d3748;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.wcdu-download-header p {
+    color: #718096;
+}
+
+.wcdu-download-list {
+    margin-top: 2rem;
+}
+
+.wcdu-download-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    background: #f8fafc;
+}
+
+.wcdu-download-item-info {
+    flex: 1;
+}
+
+.wcdu-download-item-name {
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 0.25rem;
+}
+
+.wcdu-download-item-size {
+    font-size: 0.85rem;
+    color: #718096;
+}
+
+.wcdu-download-btn {
+    padding: 0.5rem 1.5rem;
+    background: #6e45e2;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.wcdu-download-btn:hover {
+    background: #5a36c9;
+    transform: translateY(-1px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .wcdu-form-container {
+        padding: 1.5rem;
+    }
+    
+    .wcdu-help-section {
+        position: static;
+        margin-bottom: 1rem;
+        display: flex;
+        justify-content: flex-end;
+    }
+    
+    .wcdu-upload-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .wcdu-tags-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+    
+    .wcdu-success-actions {
+        flex-direction: column;
+    }
+    
+    .wcdu-success-actions a {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Animation */
+@keyframes wcduFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.wcdu-form-container,
+.wcdu-download-container {
+    animation: wcduFadeIn 0.4s ease-out forwards;
+}

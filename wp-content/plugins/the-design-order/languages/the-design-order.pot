@@ -1,0 +1,358 @@
+# Copyright (C) 2023 Your Name
+# This file is distributed under the same license as the The Design Order plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: The Design Order 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-07-15 14:00+0000\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2.2\n"
+
+#: the-design-order.php:15
+msgid "The Design Order requires WooCommerce to be installed and active!"
+msgstr ""
+
+#: includes/class-design-order.php:62
+msgid "New Design Order"
+msgstr ""
+
+#: includes/class-design-order.php:63
+msgid "My Design Orders"
+msgstr ""
+
+#: includes/class-design-order-post-types.php:21
+msgid "Design Orders"
+msgstr ""
+
+#: includes/class-design-order-post-types.php:22
+msgid "Design Order"
+msgstr ""
+
+#: includes/class-design-order-post-types.php:23
+msgid "Add New"
+msgstr ""
+
+#: includes/class-design-order-post-types.php:24
+msgid "Add New Design Order"
+msgstr ""
+
+#: includes/class-design-order-post-types.php:25
+msgid "Edit Design Order"
+msgstr ""
+
+#: includes/class-design-order-post-types.php:26
+msgid "New Design Order"
+msgstr ""
+
+#: includes/class-design-order-post-types.php:27
+msgid "View Design Order"
+msgstr ""
+
+#: includes/class-design-order-post-types.php:28
+msgid "Search Design Orders"
+msgstr ""
+
+#: includes/class-design-order-post-types.php:29
+msgid "No design orders found"
+msgstr ""
+
+#: includes/class-design-order-post-types.php:30
+msgid "No design orders found in Trash"
+msgstr ""
+
+#: includes/class-design-order-post-types.php:31
+msgid "Design Orders"
+msgstr ""
+
+#: includes/class-design-order-post-types.php:51
+msgid "Statuses"
+msgstr ""
+
+#: includes/class-design-order-post-types.php:52
+msgid "Status"
+msgstr ""
+
+#: includes/class-design-order-post-types.php:53
+msgid "Search Statuses"
+msgstr ""
+
+#: includes/class-design-order-post-types.php:54
+msgid "All Statuses"
+msgstr ""
+
+#: includes/class-design-order-post-types.php:55
+msgid "Edit Status"
+msgstr ""
+
+#: includes/class-design-order-post-types.php:56
+msgid "Update Status"
+msgstr ""
+
+#: includes/class-design-order-post-types.php:57
+msgid "Add New Status"
+msgstr ""
+
+#: includes/class-design-order-post-types.php:58
+msgid "New Status Name"
+msgstr ""
+
+#: includes/class-design-order-post-types.php:59
+msgid "Statuses"
+msgstr ""
+
+#: includes/class-design-order-post-types.php:72
+msgid "New"
+msgstr ""
+
+#: includes/class-design-order-post-types.php:73
+msgid "In Progress"
+msgstr ""
+
+#: includes/class-design-order-post-types.php:74
+msgid "Design Received"
+msgstr ""
+
+#: includes/class-design-order-post-types.php:75
+msgid "Completed"
+msgstr ""
+
+#: includes/class-design-order-post-types.php:76
+msgid "Cancelled"
+msgstr ""
+
+#: templates/frontend/design-order-form.php:6
+msgid "Please fill in all required fields."
+msgstr ""
+
+#: templates/frontend/design-order-form.php:10
+msgid "Failed to create design order. Please try again."
+msgstr ""
+
+#: templates/frontend/design-order-form.php:15
+msgid "Name"
+msgstr ""
+
+#: templates/frontend/design-order-form.php:20
+msgid "Mobile Number"
+msgstr ""
+
+#: templates/frontend/design-order-form.php:25
+msgid "Email Address"
+msgstr ""
+
+#: templates/frontend/design-order-form.php:30
+msgid "Design Description"
+msgstr ""
+
+#: templates/frontend/design-order-form.php:35
+msgid "Upload Documents"
+msgstr ""
+
+#: templates/frontend/design-order-form.php:38
+msgid "Select Files"
+msgstr ""
+
+#: templates/frontend/design-order-form.php:39
+msgid "No files selected"
+msgstr ""
+
+#: templates/frontend/design-order-form.php:48
+msgid "Maximum file size: %s. Allowed file types: %s"
+msgstr ""
+
+#: templates/frontend/design-order-form.php:55
+msgid "Submit Design Order"
+msgstr ""
+
+#: templates/frontend/design-order-list.php:4
+msgid "Please log in to view your design orders."
+msgstr ""
+
+#: templates/frontend/design-order-list.php:10
+msgid "My Design Orders"
+msgstr ""
+
+#: templates/frontend/design-order-list.php:14
+msgid "You have no design orders yet."
+msgstr ""
+
+#: templates/frontend/design-order-list.php:20
+msgid "Order"
+msgstr ""
+
+#: templates/frontend/design-order-list.php:21
+msgid "Date"
+msgstr ""
+
+#: templates/frontend/design-order-list.php:22
+msgid "Status"
+msgstr ""
+
+#: templates/frontend/design-order-list.php:23
+msgid "Actions"
+msgstr ""
+
+#: templates/frontend/design-order-list.php:45
+msgid "View"
+msgstr ""
+
+#: templates/frontend/design-order-list.php:49
+msgid "Purchase"
+msgstr ""
+
+#: templates/frontend/design-order-thankyou.php:10
+msgid "Invalid order ID."
+msgstr ""
+
+#: templates/frontend/design-order-thankyou.php:14
+msgid "Order not found."
+msgstr ""
+
+#: templates/frontend/design-order-thankyou.php:18
+msgid "You are not authorized to view this order."
+msgstr ""
+
+#: templates/frontend/design-order-thankyou.php:26
+msgid "Thank You for Your Design Order!"
+msgstr ""
+
+#: templates/frontend/design-order-thankyou.php:30
+msgid "Order Summary"
+msgstr ""
+
+#: templates/frontend/design-order-thankyou.php:34
+msgid "Order ID:"
+msgstr ""
+
+#: templates/frontend/design-order-thankyou.php:39
+msgid "Status:"
+msgstr ""
+
+#: templates/frontend/design-order-thankyou.php:44
+msgid "Date:"
+msgstr ""
+
+#: templates/frontend/design-order-thankyou.php:50
+msgid "Next Steps"
+msgstr ""
+
+#: templates/frontend/design-order-thankyou.php:53
+msgid "Our team will review your design request and get back to you soon with proposals."
+msgstr ""
+
+#: templates/frontend/design-order-thankyou.php:55
+msgid "Your design is currently being worked on by our team."
+msgstr ""
+
+#: templates/frontend/design-order-thankyou.php:57
+msgid "Your design is ready! Please complete the payment to download your files."
+msgstr ""
+
+#: templates/frontend/design-order-thankyou.php:61
+msgid "Complete Payment"
+msgstr ""
+
+#: templates/frontend/design-order-thankyou.php:63
+msgid "Your design order has been completed. Thank you for your business!"
+msgstr ""
+
+#: templates/frontend/design-order-thankyou.php:71
+msgid "View All Orders"
+msgstr ""
+
+#: templates/frontend/design-order-thankyou.php:74
+msgid "Return to Home"
+msgstr ""
+
+#: templates/admin/design-order-list.php:12
+msgid "Design Orders"
+msgstr ""
+
+#: templates/admin/design-order-list.php:16
+msgid "Search results for: %s"
+msgstr ""
+
+#: templates/admin/design-order-list.php:27
+msgid "Filter by status"
+msgstr ""
+
+#: templates/admin/design-order-list.php:28
+msgid "All statuses"
+msgstr ""
+
+#: templates/admin/design-order-list.php:38
+msgid "Filter"
+msgstr ""
+
+#: templates/admin/design-order-list.php:55
+msgid "%s item"
+msgid_plural "%s items"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/admin/design-order-list.php:86
+msgid "Edit"
+msgstr ""
+
+#: templates/admin/design-order-list.php:88
+msgid "View"
+msgstr ""
+
+#: templates/admin/design-order-list.php:90
+msgid "Trash"
+msgstr ""
+
+#: templates/admin/design-order-list.php:92
+msgid "Show more details"
+msgstr ""
+
+#: templates/admin/design-order-list.php:147
+msgid "No design orders found."
+msgstr ""
+
+#: templates/admin/design-order-edit.php:13
+msgid "Edit Design Order"
+msgstr ""
+
+#: templates/admin/design-order-edit.php:17
+msgid "Back to Orders"
+msgstr ""
+
+#: templates/admin/design-order-edit.php:28
+msgid "Title"
+msgstr ""
+
+#: templates/admin/design-order-edit.php:39
+msgid "Design Description"
+msgstr ""
+
+#: assets/js/frontend.js:5
+msgid "files selected"
+msgstr ""
+
+#: assets/js/frontend.js:7
+msgid "File is too large"
+msgstr ""
+
+#: assets/js/frontend.js:8
+msgid "Invalid file type"
+msgstr ""
+
+#: assets/js/frontend.js:9
+msgid "Remove file"
+msgstr ""
+
+#: assets/js/admin.js:5
+msgid "Are you sure you want to delete this file?"
+msgstr ""
+
+#: assets/js/admin.js:6
+msgid "Error occurred"
+msgstr ""

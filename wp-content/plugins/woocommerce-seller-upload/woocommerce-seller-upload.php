@@ -8,14 +8,6 @@ Author: Your Name
 
 if (!defined('ABSPATH')) exit;
 
-// Add custom MIME types
-add_filter('upload_mimes', 'wcsu_custom_mime_types');
-function wcsu_custom_mime_types($mimes) {
-    $mimes['emb'] = 'application/octet-stream';
-    $mimes['dst'] = 'application/octet-stream';
-    return $mimes;
-}
-
 // Enqueue CSS only when shortcode is used
 add_action('wp_enqueue_scripts', 'wcsu_enqueue_styles');
 function wcsu_enqueue_styles() {
@@ -41,12 +33,14 @@ function wcsu_handle_file_upload($file_field, $post_id) {
         $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
 
         $allowed_extensions = [
-            'emb_e4' => ['emb'],
-            'emb_w6' => ['emb'],
-            'dst' => ['dst'],
-            'all_zip' => ['zip'],
-            'other' => [] // allow anything
-        ];
+    'emb'     => ['emb'],
+    'emb_e4'  => ['emb'],
+    'emb_w6'  => ['emb'],
+    'dst'     => ['dst'],
+    'all_zip' => ['zip'],
+    'other'   => [] // allow anything
+    ];
+
 
         if (!empty($allowed_extensions[$file_field]) && !in_array($file_ext, $allowed_extensions[$file_field])) {
             return false;
@@ -92,30 +86,42 @@ add_shortcode('product_submission_form', function () {
 
             if (!empty($_POST['category'])) {
                 $cat_id = (int) $_POST['category'];
-                wp_set_post_terms($post_id, [$cat_id], 'product_cat');
+                $selected_cat = get_term_by('id', $cat_id, 'product_cat');
+                
+                if ($selected_cat->name === 'Bundles' && !empty($_POST['subcategory'])) {
+                    // If main category is Bundles and subcategory is selected
+                    $subcat_id = (int) $_POST['subcategory'];
+                    wp_set_post_terms($post_id, [$subcat_id], 'product_cat');
+                } else {
+                    // For all other categories
+                    wp_set_post_terms($post_id, [$cat_id], 'product_cat');
+                }
             }
+
             // Process tags
-    if (!empty($_POST['product_tags'])) {
-        $tags = array_map('intval', (array)$_POST['product_tags']);
-        $valid_tags = [];
-        
-        // Verify tags exist
-        foreach ($tags as $tag_id) {
-            if (term_exists($tag_id, 'product_tag')) {
-                $valid_tags[] = $tag_id;
+            if (!empty($_POST['product_tags'])) {
+                $tags = array_map('intval', (array)$_POST['product_tags']);
+                $valid_tags = [];
+                
+                // Verify tags exist
+                foreach ($tags as $tag_id) {
+                    if (term_exists($tag_id, 'product_tag')) {
+                        $valid_tags[] = $tag_id;
+                    }
+                }
+                
+                if (!empty($valid_tags)) {
+                    wp_set_object_terms($post_id, $valid_tags, 'product_tag');
+                }
+            } else {
+                // Remove all tags if none selected
+                wp_set_object_terms($post_id, [], 'product_tag');
             }
-        }
-        
-        wp_set_object_terms($post_id, $valid_tags, 'product_tag');
-    } else {
-        // Remove all tags if none selected
-        wp_set_object_terms($post_id, [], 'product_tag');
-    }
 
             $thumb_id = wcsu_handle_file_upload('gallery', $post_id);
             if ($thumb_id) set_post_thumbnail($post_id, $thumb_id);
 
-            $file_fields = [ 'dst', 'all_zip'];
+            $file_fields = ['dst', 'all_zip', 'emb_e4', 'emb_w6', 'emb'];
             $file_ids = [];
             foreach ($file_fields as $field) {
                 $file_id = wcsu_handle_file_upload($field, $post_id);
@@ -130,78 +136,174 @@ add_shortcode('product_submission_form', function () {
     ?>
 
     <div class="wcsu-form-wrapper">
-       <form method="post" enctype="multipart/form-data" class="wcsu-form">
-    <h2>✨ Submit Your EmbDesign ✨</h2>
-    <div class="wcsu-help-section">
-        <a href="https://embdesign.shop/how-to-upload/" class="help-button" target="_blank">
-            <span class="help-icon">?</span>
-            <span class="help-text">How to Upload</span>
-        </a>
-    </div>
-    
-    
-            <input name="product_title" required placeholder="Product Title" value="<?php echo esc_attr($_POST['product_title'] ?? '') ?>">
+        <form method="post" enctype="multipart/form-data" class="wcsu-form">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h2 style="margin: 0;">✨ Submit Your EmbDesign ✨</h2>
+                <a href="https://embdesign.shop/how-to-upload/" 
+                   target="_blank"
+                   style="display: inline-flex; 
+                          align-items: center; 
+                          justify-content: center;
+                          width: 70px; 
+                          height: 90px;
+                          background-color: #FFD700;
+                          color: white;
+                          border-radius: 4px;
+                          font-family: Arial, sans-serif;
+                          text-decoration: none;
+                          font-weight: bold;
+                          font-size: 76px;
+                          transition: all 0.3s ease;">
+                    ﹖
+                </a>
+            </div>
+        
+            <label>Design Pictures:</label>
+            <input type="file" name="gallery" accept="image/*">
+            <input name="product_title" required placeholder="Design Name" value="<?php echo esc_attr($_POST['product_title'] ?? '') ?>">
             <textarea name="product_desc" required placeholder="Description"><?php echo esc_textarea($_POST['product_desc'] ?? '') ?></textarea>
-            <input name="design_code" placeholder="Design Code" value="<?php echo esc_attr($_POST['design_code'] ?? '') ?>">
             <input name="stitches" placeholder="Stitches" value="<?php echo esc_attr($_POST['stitches'] ?? '') ?>">
-            <input name="area" placeholder="Area" value="<?php echo esc_attr($_POST['area'] ?? '') ?>">
+            <input name="area" placeholder="Machine Area" value="<?php echo esc_attr($_POST['area'] ?? '') ?>">
             <div> <input name="height" placeholder="Height (MM)" type="number" step="0.1" value="<?php echo esc_attr($_POST['height'] ?? '') ?>"> </div>
             <input name="width" placeholder="Width (MM)" type="number" step="0.1" value="<?php echo esc_attr($_POST['width'] ?? '') ?>">
-            <input name="formats" placeholder="Formats" value="<?php echo esc_attr($_POST['formats'] ?? '') ?>">
+            <input name="formats" placeholder="Design Formats (emb , dst)" value="<?php echo esc_attr($_POST['formats'] ?? '') ?>">
             <input name="needle" placeholder="Needle" value="<?php echo esc_attr($_POST['needle'] ?? '') ?>">
             <input name="price" type="number" min="0" step="0.01" required placeholder="Price" value="<?php echo esc_attr($_POST['price'] ?? '') ?>">
 
-            <label>Design Pictures:</label>
-            <input type="file" name="gallery" accept="image/*">
-
             <div class="wcsu-upload-grid">
                 <div><label>DST:</label><input type="file" name="dst" accept=".dst"></div>
-                <div><label>EmbW6 And Emb e4 (Zip):</label><input type="file" name="all_zip" accept=".zip"></div>
+                <div><label>EMB E4:</label><input type="file" name="emb_e4" accept=".emb" multiple></div>
+                <div><label>EMB W6:</label><input type="file" name="emb_w6" accept=".emb" multiple></div>
+                <div><label>Bundle (Zip):</label><input type="file" name="all_zip" accept=".zip"></div>
             </div>
 
             <label>Design Type (Category):</label>
-            <select name="category">
-                <?php foreach (get_terms(['taxonomy' => 'product_cat', 'hide_empty' => false]) as $term): ?>
+            <select name="category" id="main_category" onchange="toggleSubcategory()">
+                <?php foreach (get_terms(['taxonomy' => 'product_cat', 'hide_empty' => false, 'parent' => 0]) as $term): ?>
                     <option value="<?= esc_attr($term->term_id) ?>" <?php selected($_POST['category'] ?? '', $term->term_id) ?>><?= esc_html($term->name) ?></option>
                 <?php endforeach; ?>
             </select>
             
-            
-            
+            <div id="subcategory_field" style="display: none;">
+                <label>Bundle Subcategory:</label>
+                <select name="subcategory" id="subcategory">
+                    <?php 
+                    // Find the Bundles category
+                    $bundles_cat = get_term_by('name', 'Bundles', 'product_cat');
+                    if ($bundles_cat) {
+                        $subcategories = get_terms([
+                            'taxonomy' => 'product_cat',
+                            'hide_empty' => false,
+                            'parent' => $bundles_cat->term_id
+                        ]);
+                        foreach ($subcategories as $subcat): ?>
+                            <option value="<?= esc_attr($subcat->term_id) ?>" <?php selected($_POST['subcategory'] ?? '', $subcat->term_id) ?>><?= esc_html($subcat->name) ?></option>
+                        <?php endforeach;
+                    }
+                    ?>
+                </select>
+            </div>
+
             <div class="wcsu-form-field">
-    <label for="product_tags"><?php echo esc_html__('Design Tags (What includes)', 'your-plugin'); ?></label>
+                <label for="product_tags">Design Tags (What includes)</label>
+                
+                <div class="tags-dropdown-container">
+                    <button type="button" class="tags-dropdown-button" onclick="toggleTagsDropdown()">
+                        Select Tags ▼
+                    </button>
+                    <div class="tags-dropdown-content" style="display: none;">
+                        <?php
+                        // Get all existing product tags
+                        $all_tags = get_terms([
+                            'taxonomy' => 'product_tag',
+                            'hide_empty' => false,
+                            'orderby' => 'name',
+                        ]);
 
-<?php
-// Get all existing product tags
-$all_tags = get_terms([
-    'taxonomy' => 'post_tag',
-    'hide_empty' => false,
-    'orderby' => 'name',
-]);
+                        // Get previously selected tags (if form was submitted)
+                        $selected_tags = isset($_POST['product_tags']) ? array_map('intval', (array)$_POST['product_tags']) : [];
+                        ?>
+                        
+                        <div class="tags-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 5px; padding: 10px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 4px;">
+                            <?php foreach ($all_tags as $tag) : ?>
+                                <div class="tag-item" style="margin: 2px 0;">
+                                    <input type="checkbox" 
+                                           name="product_tags[]" 
+                                           id="product_tag_<?php echo esc_attr($tag->term_id); ?>" 
+                                           value="<?php echo esc_attr($tag->term_id); ?>"
+                                           <?php checked(in_array($tag->term_id, $selected_tags)); ?> />
+                                    <label for="product_tag_<?php echo esc_attr($tag->term_id); ?>" style="margin-left: 5px;">
+                                        <?php echo esc_html($tag->name); ?>
+                                    </label>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-// Get previously selected tags (if form was submitted)
-$selected_tags = isset($_POST['product_tags']) ? array_map('intval', (array)$_POST['product_tags']) : [];
-?>
-
-<div class="tags-grid-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 1px; margin: 1px 0;">
-    <?php foreach ($all_tags as $tag) : ?>
-        <div class="tag-item" style="display: flex; align-items: center;">
-            <input type="checkbox" 
-                   name="product_tags[]" 
-                   id="product_tag_<?php echo esc_attr($tag->term_id); ?>" 
-                   value="<?php echo esc_attr($tag->term_id); ?>"
-                   <?php checked(in_array($tag->term_id, $selected_tags)); ?> />
-            <label for="product_tag_<?php echo esc_attr($tag->term_id); ?>" style="margin-left: 1px;">
-                <?php echo esc_html($tag->name); ?>
-            </label>
-        </div>
-    <?php endforeach; ?>
-</div>
-<p class="description"><?php echo esc_html__('', 'your-plugin'); ?></p>
-
-            <button type="submit" name="wcsu_submit">🚀 Submit Product</button>
+            <button type="submit" name="wcsu_submit">🚀 Submit Design</button>
         </form>
     </div>
+
+    <script>
+    function toggleTagsDropdown() {
+        var dropdown = document.querySelector('.tags-dropdown-content');
+        var button = document.querySelector('.tags-dropdown-button');
+        
+        if (dropdown.style.display === 'none' || dropdown.style.display === '') {
+            dropdown.style.display = 'block';
+            button.innerHTML = 'Select Tags ▲';
+        } else {
+            dropdown.style.display = 'none';
+            button.innerHTML = 'Select Tags ▼';
+        }
+    }
+
+    function toggleSubcategory() {
+        var mainCategory = document.getElementById('main_category');
+        var subcategoryField = document.getElementById('subcategory_field');
+        var selectedOption = mainCategory.options[mainCategory.selectedIndex].text;
+        
+        if (selectedOption === 'Bundles') {
+            subcategoryField.style.display = 'block';
+        } else {
+            subcategoryField.style.display = 'none';
+        }
+    }
+
+    // Initialize the subcategory field visibility on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        toggleSubcategory();
+    });
+    </script>
+
+    <style>
+    .tags-dropdown-button {
+        padding: 8px 15px;
+        background-color: #f0f0f0;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        width: 100%;
+        text-align: left;
+        margin-bottom: 5px;
+    }
+
+    .tags-dropdown-button:hover {
+        background-color: #e0e0e0;
+    }
+
+    .tags-dropdown-content {
+        position: relative;
+        z-index: 1;
+        max-height: 300px;
+        overflow-y: auto;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    </style>
+
     <?php
     return ob_get_clean();
 });
@@ -259,3 +361,37 @@ add_action('woocommerce_thankyou', function ($order_id) {
         }
     }
 });
+// ✅ 1. Allow .emb and .dst MIME types
+add_filter('upload_mimes', function ($mimes) {
+    $mimes['emb'] = 'application/octet-stream';
+    $mimes['dst'] = 'application/octet-stream';
+    return $mimes;
+});
+
+// ✅ 2. Force file extension recognition for .emb and .dst
+add_filter('wp_check_filetype_and_ext', function($data, $file, $filename, $mimes) {
+    $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+    if ($ext === 'emb') {
+        return [
+            'ext' => 'emb',
+            'type' => 'application/octet-stream',
+            'proper_filename' => $filename,
+        ];
+    }
+    if ($ext === 'dst') {
+        return [
+            'ext' => 'dst',
+            'type' => 'application/octet-stream',
+            'proper_filename' => $filename,
+        ];
+    }
+    return $data;
+}, 99, 4);
+
+// ✅ 3. Bypass WordPress file type restriction (works on all servers)
+add_filter('user_has_cap', function($allcaps, $caps, $args, $user) {
+    if (!empty($args[0]) && $args[0] === 'upload_files') {
+        $allcaps['unfiltered_upload'] = true;
+    }
+    return $allcaps;
+}, 10, 4);

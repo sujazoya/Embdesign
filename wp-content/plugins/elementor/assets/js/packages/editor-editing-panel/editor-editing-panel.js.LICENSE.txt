@@ -6,6 +6,8 @@
 
 /*! @elementor/editor-current-user */
 
+/*! @elementor/editor-documents */
+
 /*! @elementor/editor-elements */
 
 /*! @elementor/editor-panels */
@@ -35,6 +37,8 @@
 /*! @elementor/ui */
 
 /*! @elementor/utils */
+
+/*! @elementor/wp-media */
 
 /*! @wordpress/i18n */
 
@@ -76,6 +80,10 @@
   !*** external ["elementorV2","session"] ***!
   \******************************************/
 
+/*!******************************************!*\
+  !*** external ["elementorV2","wpMedia"] ***!
+  \******************************************/
+
 /*!*******************************************!*\
   !*** external ["elementorV2","editorUi"] ***!
   \*******************************************/
@@ -107,6 +115,10 @@
 /*!*************************************************!*\
   !*** external ["elementorV2","editorElements"] ***!
   \*************************************************/
+
+/*!**************************************************!*\
+  !*** external ["elementorV2","editorDocuments"] ***!
+  \**************************************************/
 
 /*!***************************************************!*\
   !*** external ["elementorV2","editorResponsive"] ***!

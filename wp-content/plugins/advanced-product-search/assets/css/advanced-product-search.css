@@ -1,0 +1,282 @@
+/* Base Container */
+.aps-search-container {
+    margin: 20px auto;
+    max-width: 800px;
+    position: relative;
+}
+
+/* Toggle Button */
+.aps-search-toggle {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 9999;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.aps-search-toggle:hover {
+    background: #34495e;
+}
+
+/* Search Form */
+.aps-search-form {
+    position: absolute; /* Instead of fixed */
+    display: none;
+    background: white;
+    padding: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+}
+
+.aps-search-form.active {
+    display: block;
+}
+
+/* Form Elements */
+.aps-search-form .form-group {
+    margin-bottom: 15px;
+}
+
+.aps-search-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+.aps-search-form input[type="text"],
+.aps-search-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 15px;
+    transition: border 0.3s;
+}
+
+.aps-search-form input[type="text"]:focus,
+.aps-search-form select:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+/* Voice Search */
+.aps-voice-search-button {
+    background: none;
+    border: none;
+    color: #3498db;
+    cursor: pointer;
+    font-size: 18px;
+    vertical-align: middle;
+    margin-left: 5px;
+    transition: all 0.3s;
+}
+
+.aps-voice-search-button:hover {
+    color: #2980b9;
+}
+
+.aps-voice-search-button.listening {
+    color: #e74c3c;
+    animation: pulse 1.5s infinite;
+}
+
+.aps-voice-search-status {
+    font-size: 13px;
+    color: #7f8c8d;
+    margin-top: 5px;
+    display: none;
+}
+
+.aps-voice-search-status.active {
+    display: block;
+}
+
+/* Search Results */
+.aps-global-search-results {
+    display: none;
+    position: absolute;
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 100;
+}
+
+.aps-global-search-results.active {
+    display: block;
+}
+
+.aps-global-search-section {
+    padding: 8px 15px;
+    background: #f5f5f5;
+    font-weight: bold;
+    font-size: 13px;
+    color: #555;
+    border-bottom: 1px solid #eee;
+}
+
+.aps-global-search-item {
+    padding: 10px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #f1f1f1;
+    transition: background 0.2s;
+}
+
+.aps-global-search-item:hover {
+    background: #f8f8f8;
+}
+
+.aps-global-search-item-type {
+    font-size: 12px;
+    color: #95a5a6;
+    margin-top: 3px;
+}
+
+/* Animations */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .aps-search-container {
+        padding: 0 15px;
+    }
+    
+    .aps-search-form {
+        padding: 15px;
+    }
+}
+/* Search Button */
+.aps-search-form .aps-search-button {
+    display: inline-block;
+    padding: 12px 24px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-right: 10px;
+}
+
+.aps-search-form .aps-search-button:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.aps-search-form .aps-search-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+}
+
+/* Reset Button */
+.aps-search-form .aps-reset-button {
+    display: inline-block;
+    padding: 12px 24px;
+    background: #f9f9f9;
+    color: #7f8c8d;
+    border: 1px solid #e1e1e1;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.aps-search-form .aps-reset-button:hover {
+    background: #f1f1f1;
+    color: #e74c3c;
+    border-color: #e74c3c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.aps-search-form .aps-reset-button:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* Button Container - if you want to group them nicely */
+.aps-search-form .aps-button-group {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+/* If you prefer the buttons side by side */
+.aps-search-form .aps-button-group.inline {
+    display: inline-flex;
+}
+/* Search button styles */
+.aps-search-toggle {
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.aps-search-toggle i {
+    display: block;
+}
+
+.aps-search-form {
+    background: #fff;
+    padding: 15px;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    width: 300px;
+}
+
+.aps-search-close {
+    background: none;
+    border: none;
+    font-size: 20px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.aps-search-close:hover {
+    color: #333;
+}
+
+/* Make sure the container is positioned relatively */
+.aps-search-container {
+    position: relative;
+}
+.aps-search-form {
+    max-width: 90vw;
+    width: 500px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+    display: none;
+}
+

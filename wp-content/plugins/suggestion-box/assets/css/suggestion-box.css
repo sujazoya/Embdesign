@@ -1,0 +1,84 @@
+.suggestion-box-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.suggestion-box-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.suggestion-box-header h2 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.suggestion-box-header p {
+    color: #7f8c8d;
+}
+
+.suggestion-box-form .form-group {
+    margin-bottom: 20px;
+}
+
+.suggestion-box-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.suggestion-box-form input,
+.suggestion-box-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.suggestion-box-form input:focus,
+.suggestion-box-form textarea:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+.suggestion-submit-btn {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+    width: 100%;
+}
+
+.suggestion-submit-btn:hover {
+    background: #2980b9;
+}
+
+.suggestion-response {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 4px;
+    display: none;
+}
+
+.suggestion-response.success {
+    background: #d4edda;
+    color: #155724;
+    display: block;
+}
+
+.suggestion-response.error {
+    background: #f8d7da;
+    color: #721c24;
+    display: block;
+}

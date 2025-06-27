@@ -1,3 +1,9 @@
+__( 'Clear', 'elementor' );
+__( 'Style origin', 'elementor' );
+/* translators: %s: Label of the inheritance item */
+__( 'Inheritance item: %s', 'elementor' );
+__( 'Style origin', 'elementor' );
+__( 'Style origin', 'elementor' );
 __( 'This is the final value', 'elementor' );
 __( 'This value is overridden by another style', 'elementor' );
 __( 'This has value from another style', 'elementor' );
@@ -17,7 +23,10 @@ __( 'General', 'elementor' );
 __( 'Style', 'elementor' );
 __( 'Show less', 'elementor' );
 __( 'Show more', 'elementor' );
-__( 'Dynamic tags', 'elementor' );
+__( 'Linear Gradient', 'elementor' );
+__( 'Radial Gradient', 'elementor' );
+__( 'Base', 'elementor' );
+__( 'Inherited from base styles', 'elementor' );
 __( 'Search dynamic tags…', 'elementor' );
 __( 'Sorry, nothing matched', 'elementor' );
 __( 'Try something else.', 'elementor' );
@@ -27,16 +36,37 @@ __( 'You’ll need Elementor Pro to use this feature.', 'elementor' );
 __( 'Remove dynamic value', 'elementor' );
 __( 'Dynamic tags', 'elementor' );
 __( 'Settings', 'elementor' );
+__( 'Dynamic tags', 'elementor' );
+/* translators: %s is the class name. */
+__( `class %s applied`, 'elementor' );
+/* translators: %s is the class name. */
+__( `class %s removed`, 'elementor' );
+__( 'Class', 'elementor' );
+/* translators: %s is the class name. */
+__( `%s created`, 'elementor' );
 __( 'local', 'elementor' );
 __( 'Classes', 'elementor' );
 __( 'Type class name', 'elementor' );
+__(
+						'With your current role, you can use existing classes but can’t modify them.',
+						'elementor'
+					);
+__( 'Sorry, nothing matched', 'elementor' );
+__( 'With your current role,', 'elementor' );
+__( 'you can only use existing classes.', 'elementor' );
+__( 'Clear & try again', 'elementor' );
 __(
 					'You’ve reached the limit of 50 classes. Please remove an existing one to create a new class.',
 					'elementor'
 				);
 __( 'States', 'elementor' );
+__( 'With your current role, you can only use existing states.', 'elementor' );
 __( 'Has style', 'elementor' );
 __( 'Remove', 'elementor' );
+__(
+					'With your current role, you can use existing classes but can’t modify them.',
+					'elementor'
+				);
 __( 'Rename', 'elementor' );
 __( 'Open CSS Class Menu', 'elementor' );
 __( 'Word spacing', 'elementor' );
@@ -77,6 +107,8 @@ __( 'Italic', 'elementor' );
 __( 'Font style', 'elementor' );
 __( 'Font size', 'elementor' );
 __( 'Font family', 'elementor' );
+__( 'Column gap', 'elementor' );
+__( 'Columns', 'elementor' );
 __( 'Margin', 'elementor' );
 __( 'Padding', 'elementor' );
 __( 'Width', 'elementor' );
@@ -85,6 +117,7 @@ __( 'Min width', 'elementor' );
 __( 'Min height', 'elementor' );
 __( 'Max width', 'elementor' );
 __( 'Max height', 'elementor' );
+__( 'Aspect Ratio', 'elementor' );
 __( 'Visible', 'elementor' );
 __( 'Hidden', 'elementor' );
 __( 'Auto', 'elementor' );

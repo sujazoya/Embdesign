@@ -1,0 +1,100 @@
+/* Main Desktop Menu Styles */
+.embroidery-desktop-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    font-family: 'Arial', sans-serif;
+}
+
+.embroidery-desktop-menu .menu-item {
+    position: relative;
+    padding: 15px 20px;
+}
+
+.embroidery-desktop-menu .menu-item a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+    display: block;
+    transition: color 0.3s;
+}
+
+.embroidery-desktop-menu .menu-item:hover > a {
+    color: #0073aa;
+}
+
+.embroidery-desktop-menu .menu-item.has-new-badge > a {
+    position: relative;
+}
+
+/* Category Shortcode Styles */
+.category-list-view, .category-grid-view {
+    margin: 20px 0;
+}
+
+.category-list-title, .category-grid-title {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.category-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.category-list-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.category-list-item a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.category-list-item a:hover {
+    color: #0073aa;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.category-grid-item {
+    border: 1px solid #eee;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.category-grid-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.category-grid-item a {
+    display: block;
+    text-decoration: none;
+}
+
+.category-grid-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.category-name {
+    display: block;
+    padding: 10px;
+    text-align: center;
+    color: #333;
+    font-weight: 600;
+}
