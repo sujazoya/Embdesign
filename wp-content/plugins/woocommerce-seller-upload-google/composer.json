@@ -1,0 +1,10 @@
+{
+    "name": "embdesign/woocommerce-seller-upload",
+    "description": "WooCommerce product submission with Google Drive uploads",
+    "require": {
+        "google/apiclient": "^2.12"
+    },
+    "config": {
+        "optimize-autoloader": true
+    }
+}

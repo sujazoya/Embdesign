@@ -1,0 +1,22 @@
+/* Tag input styling */
+.wcsu-tags-input .select2-selection {
+    min-height: 36px;
+    border-color: #ddd;
+    border-radius: 3px;
+}
+
+.wcsu-tags-input .select2-selection--multiple {
+    padding: 3px 5px;
+}
+
+.wcsu-tags-input .select2-selection__choice {
+    background-color: #f1f1f1;
+    border-color: #ddd;
+    color: #333;
+    padding: 2px 8px;
+    margin-top: 4px;
+}
+
+.wcsu-tags-input .select2-search__field {
+    min-width: 150px !important;
+}
