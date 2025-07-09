@@ -64,13 +64,15 @@ function wcsu_enqueue_assets() {
 }
 
 // Handle file upload with extension validation
+
 function wcsu_handle_file_upload($field_name, $post_id) {
-    if (!isset($_FILES[$field_name]) || !is_array($_FILES[$field_name]) || empty($_FILES[$field_name]['name'])) {
-        error_log("WCSU: No file data found for field '{$field_name}'.");
+    if (!isset($_FILES[$field_name]) || empty($_FILES[$field_name]['name'])) {
+        error_log("WCSU: No file uploaded for '{$field_name}'.");
         return false;
     }
 
     $file = $_FILES[$field_name];
+    $file['name'] = sanitize_file_name($file['name']);
     $file_name = $file['name'];
     $tmp_name = $file['tmp_name'];
     $ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
@@ -78,86 +80,92 @@ function wcsu_handle_file_upload($field_name, $post_id) {
     $image_extensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp'];
     $is_image = in_array($ext, $image_extensions);
 
-    // Ensure the temporary file exists before trying to read it
     if (!file_exists($tmp_name) || !is_uploaded_file($tmp_name)) {
-        error_log("WCSU: Uploaded file temporary path invalid or file not found for field '{$field_name}'. Path: {$tmp_name}");
+        error_log("WCSU: Uploaded file temp path invalid for '{$field_name}' at '{$tmp_name}'.");
         return false;
     }
 
-    // --- REQUIREMENT 1: IF IMAGE (DESIGN PICTURE) → upload to WordPress Media Library ---
+    // --- IMAGE UPLOAD TO WORDPRESS MEDIA LIBRARY ---
     if ($is_image) {
-        error_log("WCSU: Uploading image '{$file_name}' to WordPress Media Library.");
+        error_log("WCSU: Uploading image '{$file_name}' to WP Media Library.");
+
         $upload = wp_upload_bits($file_name, null, file_get_contents($tmp_name));
 
         if (!is_array($upload) || !empty($upload['error'])) {
-            error_log('WCSU: Image upload error for field ' . $field_name . ': ' . (is_array($upload) ? $upload['error'] : 'Unknown'));
+            error_log("WCSU: Image upload error for '{$file_name}': " . $upload['error']);
             return false;
         }
 
         $file_path = $upload['file'];
         $file_type_info = wp_check_filetype($file_name);
         $mime_type = $file_type_info['type'] ?? 'application/octet-stream';
-        $attachment_title = sanitize_file_name(pathinfo($file_name, PATHINFO_FILENAME));
         $wp_upload_dir = wp_upload_dir();
 
         $attachment = [
-            'guid'           => $wp_upload_dir['url'] . '/' . basename($file_path),
+            'guid' => $wp_upload_dir['url'] . '/' . basename($file_path),
             'post_mime_type' => $mime_type,
-            'post_title'     => $attachment_title,
-            'post_content'   => '',
-            'post_status'    => 'inherit',
+            'post_title' => sanitize_title(pathinfo($file_name, PATHINFO_FILENAME)),
+            'post_content' => '',
+            'post_status' => 'inherit',
         ];
 
         $attach_id = wp_insert_attachment($attachment, $file_path, $post_id);
 
         if (!function_exists('wp_generate_attachment_metadata')) {
-            require_once(ABSPATH . 'wp-admin/includes/image.php');
+            require_once ABSPATH . 'wp-admin/includes/image.php';
         }
-        $attach_data = wp_generate_attachment_metadata($attach_id, $file_path);
-        wp_update_attachment_metadata($attach_id, $attach_data);
 
-        return $attach_id; // Return the attachment ID for images
+        try {
+            $attach_data = wp_generate_attachment_metadata($attach_id, $file_path);
+            wp_update_attachment_metadata($attach_id, $attach_data);
+        } catch (Exception $e) {
+            error_log("WCSU: Image metadata error: " . $e->getMessage());
+        }
+
+        return $attach_id;
     }
 
-    // --- REQUIREMENT 2: IF NOT IMAGE (DST, EMB, ZIP) → upload to Google Drive ---
-    // This section will only run for non-image files (e.g., DST, EMB, ZIP)
-    error_log("WCSU: Attempting to upload non-image file '{$file_name}' to Google Drive.");
+    // --- NON-IMAGE FILE UPLOAD TO GOOGLE DRIVE ---
+    error_log("WCSU: Uploading non-image '{$file_name}' to Google Drive.");
 
-    // Check if the Google Drive upload function is available
     if (!function_exists('upload_file_to_google_drive')) {
-        error_log('WCSU Error: upload_file_to_google_drive function is not defined in drive-upload.php!');
-        // Fallback to local WP upload if Google Drive function is missing
+        error_log("WCSU: Google Drive upload function missing!");
         return wcsu_fallback_local_upload($file, $post_id, $field_name);
     }
 
-    $drive_link = upload_file_to_google_drive($file); // $file contains name, type, tmp_name, error, size
+    $drive_result = upload_file_to_google_drive($file); // must return ['download' => '', 'view' => '', 'id' => '']
 
-    if ($drive_link) {
-        error_log("WCSU: Successfully uploaded '{$file_name}' to Google Drive. Link: {$drive_link}");
-
-        // Update product meta to mark as downloadable and virtual
-        update_post_meta($post_id, '_downloadable', 'yes');
-        update_post_meta($post_id, '_virtual', 'yes');
-
-        // Get existing downloadable files
-        $downloadable_files = get_post_meta($post_id, '_downloadable_files', true);
-        if (!is_array($downloadable_files)) $downloadable_files = [];
-
-        // Add the new Google Drive file to downloadable files
-        $downloadable_files[] = [
-            'name' => $file_name,
-            'file' => $drive_link,
-            'type' => $file['type'] ?? 'application/octet-stream', // Use the actual file type if available
-        ];
-
-        update_post_meta($post_id, '_downloadable_files', $downloadable_files);
-
-        return $drive_link; // Return the Google Drive link for downloadable files
-    } else {
-        error_log("WCSU: Google Drive upload failed for '{$file_name}'. Falling back to local WordPress upload.");
-        // Fallback to local WordPress upload if Google Drive upload explicitly fails
+    if (!is_array($drive_result) || empty($drive_result['download'])) {
+        error_log("WCSU: Google Drive upload failed or returned invalid result for '{$file_name}'.");
         return wcsu_fallback_local_upload($file, $post_id, $field_name);
     }
+
+    // Store real file name
+    $file_names = get_post_meta($post_id, 'wcsu_file_names', true);
+    if (!is_array($file_names)) $file_names = [];
+    $file_names[$field_name] = $file_name;
+    update_post_meta($post_id, 'wcsu_file_names', $file_names);
+
+    // Mark product as downloadable
+    update_post_meta($post_id, '_downloadable', 'yes');
+    update_post_meta($post_id, '_virtual', 'yes');
+
+    // Add to WooCommerce downloadable files
+    $downloadable_files = get_post_meta($post_id, '_downloadable_files', true);
+    if (!is_array($downloadable_files)) $downloadable_files = [];
+
+    $downloadable_files[] = [
+        'name' => $file_name,
+        'file' => $drive_result['download'],
+        'type' => $file['type'] ?? 'application/octet-stream',
+    ];
+
+    update_post_meta($post_id, '_downloadable_files', $downloadable_files);
+
+    // Store Drive metadata
+    update_post_meta($post_id, '_wcsu_drive_data_' . $field_name, $drive_result);
+
+    return $drive_result['download'];
 }
 
 /**
@@ -344,16 +352,20 @@ function wcsu_render_product_submission_form() {
     display: none;
   }
 
-  .preview-thumb {
-    position: relative;
-    width: 80px;
-    height: 80px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    overflow: hidden;
-    background: #fff;
-    cursor: pointer;
-  }
+ .preview-thumb {
+  position: relative;
+  width: 80px;
+  height: auto; /* allow flexible height */
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 
   .preview-thumb img {
     width: 100%;
@@ -397,13 +409,24 @@ function wcsu_render_product_submission_form() {
     border-radius: 8px;
     cursor: zoom-out;
   }
+  .thumb-name {
+  font-size: 11px;
+  text-align: center;
+  margin-top: 4px;
+  word-break: break-all;
+  max-width: 80px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 </style>
 
 <div class="design-picture-field">
   <label for="design-gallery">Design Pictures:</label>
   <div class="dropzone" id="gallery-dropzone">
     <span class="dropzone-placeholder" id="dropzone-placeholder">Click or drop images here</span>
-    <input type="file" name="gallery[]" id="design-gallery" accept="image/*" multiple>
+    <input type="file" name="gallery" id="design-gallery" accept="image/*">
   </div>
   <div class="file-status" id="gallery-status">No images selected</div>
 </div>
@@ -457,6 +480,11 @@ function wcsu_render_product_submission_form() {
         reader.readAsDataURL(file);
 
         thumb.appendChild(img);
+
+         const nameDiv = document.createElement("div");
+         nameDiv.textContent = file.name;
+         nameDiv.className = "thumb-name";
+         thumb.appendChild(nameDiv);
         dropzone.appendChild(thumb);
       });
 
@@ -1391,34 +1419,111 @@ add_shortcode('product_download_page', function () {
     if (!$has_access) return '<p>You must purchase this product to download files.</p>';
 
     $file_ids = get_post_meta($product_id, 'wcsu_files', true);
+    $file_names = get_post_meta($product_id, 'wcsu_file_names', true);
+
     if (empty($file_ids)) return '<p>No files found for this product.</p>';
 
-    $output = "<h2>🎉 Download Product Files</h2>";
+    $output = "<div class='wcsu-download-container'>";
+    $output .= "<h2>🎉 Download Product Files</h2>";
+    $output .= "<ul class='wcsu-download-list'>";
+
     foreach ($file_ids as $label => $file_identifier) {
-        // Determine if it's a Google Drive link or a WordPress attachment ID
+        $url = '';
+        $file_name = $file_names[$label] ?? ''; // Prefer saved name
+
+        // Determine URL
         if (is_string($file_identifier) && filter_var($file_identifier, FILTER_VALIDATE_URL)) {
             $url = $file_identifier;
-            $name = basename(parse_url($url, PHP_URL_PATH)); // Get filename from URL path
+            if (empty($file_name)) {
+                $path = parse_url($url, PHP_URL_PATH);
+                $file_name = basename($path);
+                if (empty($file_name) || $file_name === 'uc' || strlen($file_name) <= 3 || !pathinfo($file_name, PATHINFO_EXTENSION)) {
+                    parse_str(parse_url($url, PHP_URL_QUERY), $query);
+                    $file_name = $label . '-' . ($query['id'] ?? 'file') . '.file';
+                }
+            }
         } elseif (is_numeric($file_identifier)) {
             $url = wp_get_attachment_url($file_identifier);
-            $name = basename(get_attached_file($file_identifier));
+            $file_path = get_attached_file($file_identifier);
+            if (empty($file_name)) {
+                $file_name = basename($file_path);
+            }
         } else {
-            // Handle unexpected cases, log an error
             error_log("WCSU: Unexpected file identifier type or format for label {$label}: " . print_r($file_identifier, true));
             continue;
         }
 
         if ($url) {
-            $output .= "<p><a href='" . esc_url($url) . "' download class='button'>Download " . esc_html($name) . "</a></p>";
+            $display_label = ucfirst(str_replace('_', ' ', $label));
+            $file_extension = pathinfo($file_name, PATHINFO_EXTENSION);
+
+            $output .= "<li class='wcsu-download-item'>";
+            $output .= "<span class='wcsu-file-info'>";
+            $output .= "<span class='wcsu-file-type'>{$display_label}</span>: ";
+            $output .= "<span class='wcsu-file-name'>{$file_name}</span>";
+            $output .= "</span>";
+            $output .= "<a href='" . esc_url($url) . "' download class='wcsu-download-button'>Download (.{$file_extension})</a>";
+            $output .= "</li>";
         } else {
             error_log("WCSU: Could not get URL for file identifier: " . print_r($file_identifier, true));
         }
     }
 
+    $output .= "</ul></div>";
+    $output .= "
+    <style>
+        .wcsu-download-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+        .wcsu-download-list {
+            list-style: none;
+            padding: 0;
+        }
+        .wcsu-download-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            margin-bottom: 10px;
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .wcsu-file-info {
+            flex: 1;
+        }
+        .wcsu-file-type {
+            font-weight: bold;
+            color: #333;
+        }
+        .wcsu-file-name {
+            color: #666;
+            font-size: 0.9em;
+        }
+        .wcsu-download-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9em;
+            transition: background-color 0.3s;
+        }
+        .wcsu-download-button:hover {
+            background-color: #45a049;
+        }
+    </style>";
+
     return $output;
 });
 
+
 // Add download links on WooCommerce Thank You page
+   
 add_action('woocommerce_thankyou', function ($order_id) {
     $order = wc_get_order($order_id);
     if (!$order) return;
@@ -1449,7 +1554,7 @@ add_action('woocommerce_thankyou', function ($order_id) {
             }
         }
     }
-});
+});  
 
 // Allow .emb and .dst MIME types
 add_filter('upload_mimes', function ($mimes) {

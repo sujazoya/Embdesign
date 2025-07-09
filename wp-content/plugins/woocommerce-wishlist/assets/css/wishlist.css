@@ -1,0 +1,96 @@
+/* Wishlist button styles */
+.wcwl-add-to-wishlist {
+    position: relative;
+}
+
+.wcwl-add-to-wishlist.loading:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    margin: -8px 0 0 -8px;
+    border: 2px solid #ccc;
+    border-top-color: #333;
+    border-radius: 50%;
+    animation: wcwl-spin 1s linear infinite;
+}
+
+.wcwl-add-to-wishlist.added {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.wcwl-add-to-wishlist-loop {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 1.2em;
+    text-decoration: none;
+}
+
+.wcwl-add-to-wishlist-loop.added {
+    color: #ff0000;
+}
+
+/* Wishlist page styles */
+.wcwl-wishlist {
+    margin: 0 0 40px;
+}
+
+.wcwl-wishlist-table {
+    margin-bottom: 20px;
+}
+
+.wcwl-wishlist-table th {
+    text-align: left;
+}
+
+.wcwl-wishlist-item.loading {
+    opacity: 0.6;
+    position: relative;
+}
+
+.wcwl-wishlist-item.loading:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    margin: -8px 0 0 -8px;
+    border: 2px solid #ccc;
+    border-top-color: #333;
+    border-radius: 50%;
+    animation: wcwl-spin 1s linear infinite;
+}
+
+.wcwl-stock-status {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+.wcwl-stock-status.in-stock {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.wcwl-stock-status.out-of-stock {
+    background-color: #f44336;
+    color: white;
+}
+
+.wcwl-empty-wishlist {
+    font-size: 1.2em;
+    color: #666;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Spinner animation */
+@keyframes wcwl-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
